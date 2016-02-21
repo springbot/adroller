@@ -102,7 +102,7 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.get_adgroups(params)
-      expect(WebMock).to have_requested(:get, request_uri).with(query: params.merge(camp_active: 'true'))
+      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end
 
@@ -119,7 +119,7 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.get_ads(params)
-      expect(WebMock).to have_requested(:get, request_uri).with(query: params.merge(is_active: 'true'))
+      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end
 
