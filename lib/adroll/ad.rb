@@ -1,64 +1,36 @@
-require 'adroll/service'
+  require 'adroll/service'
 
 module AdRoll
   module Api
     class Ad < AdRoll::Api::Service
+      WHITELIST_PARAMS = [:ad, :advertisable, :name, :destination_url, :file,
+                          :headline, :body, :message, :headline_dynamic,
+                          :body_dynamic, :message_dynamic, :is_fb_dynamic,
+                          :dynamic_template_id, :product, :logo, :background]
+
       class << self
-        def clone(destination_url: nil, name: nil, headline: nil, body: nil)
-          params = {
-            destination_url: destination_url,
-            name: name,
-            headline: headline,
-            body: body
-          }.reject { |_, value| value.nil? }
-
-          call_api(:post, __method__, params)
+        def clone(params)
+          call_api(:post, __method__, validate_params(params))
         end
 
-        def create(advertisable:, file:, dynamic_template_id: nil, destination_url: nil, name: nil,
-                   headline: nil, body: nil, message: nil, product: nil, logo: nil, background: nil)
-          params = {
-            advertisable: advertisable,
-            file: file,
-            dynamic_template_id: dynamic_template_id,
-            destination_url: destination_url,
-            name: name,
-            headline: headline,
-            body: body,
-            product: product,
-            logo: logo,
-            background: background
-          }.reject { |_, value| value.nil? }
-
-          call_api(:post, __method__, params)
+        def create(params)
+          call_api(:post, __method__, validate_params(params))
         end
 
-        def edit(ad:, destination_url: nil, name: nil, headline: nil, body: nil)
-          params = {
-            ad: ad,
-            destination_url: destination_url,
-            name: name,
-            headline: headline,
-            body: body
-          }.reject { |_, value| value.nil? }
-
-          call_api(:put, __method__, params)
+        def edit(params)
+          call_api(:put, __method__, validate_params(params))
         end
 
-        def get(ad:)
-          params = {
-            ad: ad
-          }.reject { |_, value| value.nil? }
-
-          call_api(:get, __method__, params)
+        def get(params)
+          call_api(:get, __method__, validate_params(params))
         end
 
-        def set_outline(ad:)
-          params = {
-            ad: ad
-          }.reject { |_, value| value.nil? }
+        def set_outline(params)
+          call_api(:get, __method__, validate_params(params))
+        end
 
-          call_api(:get, __method__, params)
+        def validate_params(params)
+          params.reject { |key, value| !WHITELIST_PARAMS.include?(key) || value.nil? }
         end
       end
     end
