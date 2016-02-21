@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adroller (1.2.0)
+    adroller (1.2.1)
       httmultiparty (~> 0.3.13)
       httparty (~> 0.13.1)
 
