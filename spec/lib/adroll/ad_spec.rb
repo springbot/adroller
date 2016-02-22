@@ -24,16 +24,25 @@ describe AdRoll::Api::Ad do
   end
 
   describe '::create' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/create" }
-    let!(:params) do
-      { advertisable: 'advertisable',
+    let(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/create" }
+    let(:params) do
+      {
+        advertisable: 'advertisable',
         file: 'ANBLE5432',
         dynamic_template_id: '1'
       }
     end
+    let(:input_params) do
+      {
+        advertisable: 'advertisable',
+        file: 'ANBLE5432',
+        dynamic_template_id: '1',
+        fake_param: 'hello world'
+      }
+    end
 
     it 'calls the api with the correct params' do
-      subject.create(advertisable: 'advertisable', file: 'ANBLE5432', dynamic_template_id: 1)
+      subject.create(input_params)
       expect(WebMock).to have_requested(:post, request_uri).with(body: params)
     end
   end
