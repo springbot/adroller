@@ -6,7 +6,8 @@ module AdRoll
       WHITELIST_PARAMS = [:ad, :advertisable, :name, :destination_url, :file,
                           :headline, :body, :message, :headline_dynamic,
                           :body_dynamic, :message_dynamic, :is_fb_dynamic,
-                          :dynamic_template_id, :product, :logo, :background]
+                          :dynamic_template_id, :product, :logo, :background,
+                          :headline, :body, :message]
 
       class << self
         def clone(params)
