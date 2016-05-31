@@ -4,7 +4,8 @@ module AdRoll
       class << self
         def create(advertisable:, budget:, is_retargeting: nil, is_fbx_newsfeed: nil,
                    adgroups: nil, cpc: nil, cpm: nil, start_date: nil, end_date: nil,
-                   name: nil, status: nil, max_cpm: nil, networks: nil)
+                   name: nil, status: nil, max_cpm: nil, networks: nil, is_fb_wca: nil,
+                  objective: nil, is_facebook: nil)
 
           params = {
             advertisable: advertisable,
@@ -19,7 +20,10 @@ module AdRoll
             name: name,
             status: status,
             max_cpm: max_cpm,
-            networks: networks
+            networks: networks,
+            is_fb_wca: is_fb_wca,
+            objective: objective,
+            is_facebook: is_facebook
           }.reject { |_, value| value.nil? }
 
           call_api(:post, __method__, params)
