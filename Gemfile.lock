@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adroller (1.2.1)
+    adroller (1.2.2)
       httmultiparty (~> 0.3.13)
       httparty (~> 0.13.1)
 
@@ -72,3 +72,6 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0, >= 3.0.0)
   webmock (~> 1.18, >= 1.18.0)
+
+BUNDLED WITH
+   1.11.2
