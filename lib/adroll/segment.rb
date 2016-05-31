@@ -2,8 +2,9 @@ module AdRoll
   module Api
     class Segment < AdRoll::Api::Service
       class << self
-        def edit(conversion_value:, duration:)
+        def edit(segment: , conversion_value: nil, duration: nil)
           params = {
+            segment: segment,
             conversion_value: conversion_value,
             duration: duration
           }.reject { |_, value| value.nil? }
