@@ -1,7 +1,11 @@
 require 'spec_helper'
 
+class Dummy
+  include AdRoll::Api
+end
+
 describe AdRoll::Api do
-  subject { described_class }
+  subject { Dummy }
 
   it 'should return username' do
     expect(subject.user_name).to eq 'USERNAME'

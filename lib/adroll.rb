@@ -21,20 +21,16 @@ require 'adroll/user'
 
 module AdRoll
   module Api
-    def self.user_name
-      ENV['ADROLL_USERNAME']
-    end
+    def self.included(base)
+      base.class_eval do
+        class << self
+          attr_accessor :user_name, :password, :organization_eid
 
-    def self.password
-      ENV['ADROLL_PASSWORD']
-    end
-
-    def self.organization_eid
-      ENV['ADROLL_ORGANIZATION_EID']
-    end
-
-    def self.base_url
-      'https://api.adroll.com/v1'
+          def base_url
+            'https://api.adroll.com/v1'
+          end
+        end
+      end
     end
   end
 end
