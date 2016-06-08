@@ -4,7 +4,7 @@ class Dummy
   include AdRoll::Api
 end
 
-fdescribe AdRoll::Api do
+describe AdRoll::Api do
   subject { Dummy }
 
   describe 'when included' do
@@ -13,12 +13,12 @@ fdescribe AdRoll::Api do
       expect(subject.respond_to?(:user_name=)).to be_truthy
     end
 
-    it 'should define user_name with attr_accessor' do
+    it 'should define password with attr_accessor' do
       expect(subject.respond_to?(:password)).to be_truthy
       expect(subject.respond_to?(:password=)).to be_truthy
     end
 
-    it 'should define user_name with attr_accessor' do
+    it 'should define organization_eid with attr_accessor' do
       expect(subject.respond_to?(:organization_eid)).to be_truthy
       expect(subject.respond_to?(:organization_eid=)).to be_truthy
     end
