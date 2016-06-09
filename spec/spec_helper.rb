@@ -9,12 +9,10 @@ RSpec.configure do |config|
   config.before(:each) do
     stub_request(:any, /https:\/\/USERNAME:PASSWORD@api.adroll.com\/v1\//)
       .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
+
+    AdRoll::Api.set_account_data('USERNAME', 'PASSWORD', 'ORG123XYZ')
   end
 end
 
 FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
 FactoryGirl.find_definitions
-
-ENV['ADROLL_USERNAME'] = 'USERNAME'
-ENV['ADROLL_PASSWORD'] = 'PASSWORD'
-ENV['ADROLL_ORGANIZATION_EID'] = 'ORG123XYZ'
