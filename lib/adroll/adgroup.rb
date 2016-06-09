@@ -74,7 +74,7 @@ module AdRoll
         end
 
         def create(campaign:, name: nil, ads: nil, positive_segments: nil, negative_segments: nil,
-                   geo_targets:, geo_targets_countries: nil, geo_targets_regions:)
+                   geo_targets: nil, geo_targets_countries: nil, geo_targets_regions: nil)
           params = {
             campaign: campaign,
             name: name,
