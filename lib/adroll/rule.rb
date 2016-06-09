@@ -2,7 +2,7 @@ module AdRoll
   module Api
     class Rule < AdRoll::Api::Service
       class << self
-        def create(pixel:, type:, order:, name:, display_name:, pattern:, source:)
+        def create(pixel:, type:, order:, name:, display_name: nil, pattern:, source: nil)
           params = {
             pixel: pixel,
             type: type,
