@@ -21,27 +21,27 @@ require 'adroll/user'
 
 module AdRoll
   module Api
-      def self.base_url
-        'https://api.adroll.com/v1'
-      end
+    def self.base_url
+      'https://api.adroll.com/v1'
+    end
 
-      def self.user_name
-        @user_name
-      end
+    def self.user_name
+      @user_name
+    end
 
-      def self.password
-        @password
-      end
+    def self.password
+      @password
+    end
 
-      def self.organization_eid
-        @organization_eid
-      end
+    def self.organization_eid
+      @organization_eid
+    end
 
-      def self.set_account_data(user_name, password, organization_eid)
-        @user_name = user_name
-        @password = password
-        @organization_eid = organization_eid
-      end
+    def self.set_account_data(user_name, password, organization_eid)
+      @user_name = user_name
+      @password = password
+      @organization_eid = organization_eid
+    end
 
     def self.included(base)
       base.class_eval do
