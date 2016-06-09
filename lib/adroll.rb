@@ -26,15 +26,15 @@ module AdRoll
     end
 
     def self.user_name
-      @user_name
+      @user_name || ENV['ADROLL_USERNAME']
     end
 
     def self.password
-      @password
+      @password || ENV['ADROLL_PASSWORD']
     end
 
     def self.organization_eid
-      @organization_eid
+      @organization_eid || ENV['ADROLL_ORGANIZATION_EID']
     end
 
     def self.set_account_data(user_name, password, organization_eid)

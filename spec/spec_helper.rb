@@ -16,3 +16,7 @@ end
 
 FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
 FactoryGirl.find_definitions
+
+ENV['ADROLL_USERNAME'] = 'USERNAME'
+ENV['ADROLL_PASSWORD'] = 'PASSWORD'
+ENV['ADROLL_ORGANIZATION_EID'] = 'ORG123XYZ'
