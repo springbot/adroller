@@ -21,7 +21,7 @@ module AdRoll
         end
 
         def advertisable(campaigns: nil, adgroups: nil, ads: nil, advertisables: nil,
-                         data_format:, past_days: nil, start_date: nil, end_date: nil)
+                         data_format:, past_days: nil, start_date: nil, end_date: nil, attributions: nil)
 
           params = {
             campaigns: campaigns,
@@ -31,7 +31,8 @@ module AdRoll
             data_format: data_format,
             past_days: past_days,
             start_date: start_date,
-            end_date: end_date
+            end_date: end_date,
+            attributions: attributions
           }.reject { |_, value| value.nil? }
 
           call_api(:get, __method__, params)
