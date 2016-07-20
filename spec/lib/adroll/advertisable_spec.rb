@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe AdRoll::Api::Advertisable do
   let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
+  let!(:base_uri) { "https://api.adroll.com/v1/advertisable" }
 
   subject { described_class }
 
   describe '::create' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/create" }
+    let!(:request_uri) { "#{base_uri}/create" }
 
     let!(:params) do
       {
@@ -31,7 +32,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::edit' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/edit" }
+    let!(:request_uri) { "#{base_uri}/edit" }
 
     let!(:params) do
       {
@@ -55,7 +56,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::enable_rollcrawl' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/enable_rollcrawl" }
+    let!(:request_uri) { "#{base_uri}/enable_rollcrawl" }
 
     let!(:params) do
       {
@@ -76,7 +77,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get" }
+    let!(:request_uri) { "#{base_uri}/get" }
 
     let!(:params) do
       {
@@ -91,7 +92,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_adgroups' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_adgroups" }
+    let!(:request_uri) { "#{base_uri}/get_adgroups" }
 
     let!(:params) do
       {
@@ -107,7 +108,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_ads' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_ads" }
+    let!(:request_uri) { "#{base_uri}/get_ads" }
 
     let!(:params) do
       {
@@ -124,7 +125,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_campaigns' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_campaigns" }
+    let!(:request_uri) { "#{base_uri}/get_campaigns" }
 
     let!(:params) do
       {
@@ -139,7 +140,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_coops' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_coops" }
+    let!(:request_uri) { "#{base_uri}/get_coops" }
 
     let!(:params) do
       {
@@ -157,7 +158,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_pixel' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_pixel" }
+    let!(:request_uri) { "#{base_uri}/get_pixel" }
 
     let!(:params) do
       {
@@ -172,7 +173,7 @@ describe AdRoll::Api::Advertisable do
   end
 
   describe '::get_segments' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/advertisable/get_segments" }
+    let!(:request_uri) { "#{base_uri}/get_segments" }
 
     let!(:params) do
       {
