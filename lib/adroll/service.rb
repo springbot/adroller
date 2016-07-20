@@ -1,15 +1,27 @@
 module AdRoll
   module Api
     class Service
-      def self.service_url
-        File.join(AdRoll::Api.base_url, to_s.demodulize.underscore)
+      # Override Object's clone method and pass to method_missing
+      def self.clone(params)
+        method_missing(:clone, params)
       end
 
-      def self.basic_auth
+      def self.method_missing(meth, *args, &block)
+        klass = self.new
+        klass.send(meth, *args)
+      end
+
+      private
+
+      def service_url
+        File.join(AdRoll::Api.base_url, self.class.name.demodulize.underscore)
+      end
+
+      def basic_auth
         { username: AdRoll::Api.user_name, password: AdRoll::Api.password }
       end
 
-      def self.call_api(request_method, endpoint, query_params)
+      def call_api(request_method, endpoint, query_params)
         request_uri = File.join(service_url, endpoint.to_s)
 
         if request_method == :get
@@ -32,8 +44,6 @@ module AdRoll
           { error: 'JSON::ParserError', response: response.body }
         end
       end
-
-      private_class_method :service_url, :basic_auth, :call_api
     end
   end
 end

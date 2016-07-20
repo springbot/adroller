@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Ad do
-
   let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
+  let!(:base_uri) { "https://api.adroll.com/v1/ad" }
 
   subject { described_class }
 
   describe '::clone' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/clone" }
+    let!(:request_uri) { "#{base_uri}/clone" }
 
     let!(:params) do
       {
@@ -24,7 +24,7 @@ describe AdRoll::Api::Ad do
   end
 
   describe '::create' do
-    let(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/create" }
+    let!(:request_uri) { "#{base_uri}/create" }
     let(:params) do
       {
         advertisable: 'advertisable',
@@ -48,7 +48,7 @@ describe AdRoll::Api::Ad do
   end
 
   describe '::edit' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/edit" }
+    let!(:request_uri) { "#{base_uri}/edit" }
     let!(:params) do
       { ad: 'AD123' }
     end
@@ -60,7 +60,7 @@ describe AdRoll::Api::Ad do
   end
 
   describe '::get' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/get" }
+    let!(:request_uri) { "#{base_uri}/get" }
     let!(:params) do
       { ad: 'AD123' }
     end
@@ -72,7 +72,7 @@ describe AdRoll::Api::Ad do
   end
 
   describe '::set_outline' do
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/ad/set_outline" }
+    let!(:request_uri) { "#{base_uri}/set_outline" }
     let!(:params) do
       { ad: 'AD123' }
     end
