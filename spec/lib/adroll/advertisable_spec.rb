@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Advertisable do
-  let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
   let!(:base_uri) { "https://api.adroll.com/v1/advertisable" }
 
   subject { described_class }

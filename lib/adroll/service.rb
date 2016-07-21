@@ -28,11 +28,15 @@ module AdRoll
       end
 
       def username
-        client.user_name || AdRoll::Api.user_name
+        (client && client.user_name) || AdRoll::Api.user_name
       end
 
       def password
-        client.password || AdRoll::Api.password
+        (client && client.password) || AdRoll::Api.password
+      end
+
+      def debug_output
+        $stdout if (client && client.debug?) || AdRoll::Api.debug?
       end
 
       def call_api(request_method, endpoint, query_params)
@@ -40,15 +44,15 @@ module AdRoll
 
         if request_method == :get
           response = HTTParty.send(request_method, request_uri,
-                                   basic_auth: basic_auth, query: query_params, debug_output: $stdout)
+                                   basic_auth: basic_auth, query: query_params, debug_output: debug_output)
         else
           if request_uri == 'https://api.adroll.com/v1/ad/create'
             response = HTTMultiParty.send(request_method, request_uri,
-                                          basic_auth: basic_auth, body: query_params, debug_output: $stdout)
+                                          basic_auth: basic_auth, body: query_params, debug_output: debug_output)
 
           else
             response = HTTParty.send(request_method, request_uri,
-                                     basic_auth: basic_auth, body: query_params, debug_output: $stdout)
+                                     basic_auth: basic_auth, body: query_params, debug_output: debug_output)
           end
         end
 

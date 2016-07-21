@@ -35,6 +35,10 @@ module AdRoll
       @password || ENV['ADROLL_PASSWORD']
     end
 
+    def self.debug?
+      ENV['DEBUG'] == 'true'
+    end
+
     def self.organization_eid
       @organization_eid || ENV['ADROLL_ORGANIZATION_EID']
     end
