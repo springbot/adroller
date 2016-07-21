@@ -45,7 +45,7 @@ ENV['ADROLL_ORGANIZATION'] = 'Your Organization eid'
 Method Calls
 ============
 
-This gem uses basic abstraction for the AdRoll services
+This gem uses basic abstraction for the AdRoll services 
 
 A method call will return a JSON response directly from the api
 
