@@ -1,13 +1,13 @@
-require 'adroller'
-require 'pry-byebug'
-require 'factory_girl'
-require 'webmock/rspec'
-
 require 'simplecov'
 SimpleCov.start
 
 require 'codecov'
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
+require 'adroller'
+require 'pry-byebug'
+require 'factory_girl'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
