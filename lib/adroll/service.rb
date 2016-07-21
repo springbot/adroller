@@ -1,6 +1,8 @@
 module AdRoll
   module Api
     class Service
+      attr_accessor :client
+
       # Override Object's clone method and pass to method_missing
       def self.clone(params)
         method_missing(:clone, params)
@@ -11,6 +13,10 @@ module AdRoll
         klass.send(meth, *args)
       end
 
+      def initialize(options = {})
+        @client = options.delete(:client)
+      end
+
       private
 
       def service_url
@@ -18,7 +24,15 @@ module AdRoll
       end
 
       def basic_auth
-        { username: AdRoll::Api.user_name, password: AdRoll::Api.password }
+        { username: username, password: password }
+      end
+
+      def username
+        client.user_name || AdRoll::Api.user_name
+      end
+
+      def password
+        client.password || AdRoll::Api.password
       end
 
       def call_api(request_method, endpoint, query_params)
