@@ -1,10 +1,6 @@
+machine:
+  ruby:
+    version: ruby-2.2.4
 test:
   post:
     - 'gem build *.gemspec'
-
-deployment:
-  production:
-    branch: current
-    commands:
-      - echo "Uploading gem files to Gemfury..."
-      - for gem in *.gem; do curl -F package=@$gem https://push.fury.io/$GEMFURY_TOKEN/; done
