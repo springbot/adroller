@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'factory_girl', '~> 4.4', '>= 4.4.0'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency "codecov"
 
   spec.add_dependency 'httparty', '~> 0.13.1'
   spec.add_dependency 'httmultiparty', '~> 0.3.13'

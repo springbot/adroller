@@ -4,3 +4,4 @@ machine:
 test:
   post:
     - 'gem build *.gemspec'
+    - bash <(curl -s https://codecov.io/bash)

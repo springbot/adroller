@@ -3,6 +3,12 @@ require 'pry-byebug'
 require 'factory_girl'
 require 'webmock/rspec'
 
+require 'simplecov'
+SimpleCov.start
+
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.filter_run focus: true
