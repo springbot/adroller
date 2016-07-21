@@ -28,6 +28,8 @@ module AdRoll
         call_api(:get, __method__, validate_params(params))
       end
 
+      private
+
       def validate_params(params)
         params.reject { |key, value| !WHITELIST_PARAMS.include?(key) || value.nil? }
       end

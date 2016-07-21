@@ -8,7 +8,7 @@ module AdRoll
           pixel: pixel,
           app_name: app_name,
           os: os,
-          app_identifier: app_indentifier,
+          app_identifier: app_identifier,
           source_type: source_type,
           source_variant: source_variant,
           verbosity: verbosity,
@@ -34,7 +34,7 @@ module AdRoll
           mobile_app: mobile_app,
           app_name: app_name,
           os: os,
-          app_identifier: app_indentifier,
+          app_identifier: app_identifier,
           source_type: source_type,
           source_variant: source_variant,
           verbosity: verbosity,
@@ -47,14 +47,13 @@ module AdRoll
 
       def get(mobile_app:, pixel:, eid:, app_name:, os:, app_identifier:, source_type:, source_variant:,
               configuration:)
-
         params = {
           mobile_app: mobile_app,
           pixel: pixel,
           eid: eid,
           app_name: app_name,
           os: os,
-          app_identifier: app_indentifier,
+          app_identifier: app_identifier,
           source_type: source_type,
           source_variant: source_variant,
           configuration: configuration

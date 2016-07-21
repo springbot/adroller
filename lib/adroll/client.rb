@@ -13,6 +13,10 @@ module AdRoll
       "AdRoll::Api::#{camelize(meth)}".constantize.new(client: self)
     end
 
+    def debug?
+      debug
+    end
+
     private
 
     def camelize(string)

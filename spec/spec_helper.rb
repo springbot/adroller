@@ -1,8 +1,8 @@
-require 'simplecov'
-SimpleCov.start
-
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+# require 'simplecov'
+# SimpleCov.start
+#
+# require 'codecov'
+# SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require 'adroller'
 require 'pry-byebug'
@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.color = true
 
   config.before(:each) do
-    stub_request(:any, /https:\/\/api.adroll.com\/v1\/.*/)
+    stub_request(:any, /https:\/\/api.adroll.com\/.*/)
       .with(basic_auth: ['USERNAME', 'PASSWORD'])
       .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
 

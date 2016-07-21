@@ -17,6 +17,10 @@ module AdRoll
         @client = options.delete(:client)
       end
 
+      def service_method
+        AdRoll::Utils.snakecase(self.class.to_s.gsub(/^.*::/, ''))
+      end
+
       private
 
       def service_url

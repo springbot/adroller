@@ -1,25 +1,27 @@
 require 'httparty'
 require 'httmultiparty'
 
-require 'adroll/ad'
-require 'adroll/adgroup'
-require 'adroll/advertisable'
-require 'adroll/campaign'
+require 'adroll/api/ad'
+require 'adroll/api/adgroup'
+require 'adroll/api/advertisable'
+require 'adroll/api/campaign'
+require 'adroll/api/event'
+require 'adroll/api/facebook'
+require 'adroll/api/invoice'
+require 'adroll/api/mobile_app'
+require 'adroll/api/mobile_rule'
+require 'adroll/api/organization'
+require 'adroll/api/payment_method'
+require 'adroll/api/pixel'
+require 'adroll/api/report'
+require 'adroll/api/rollcrawl_configuration'
+require 'adroll/api/rule'
+require 'adroll/api/segment'
+require 'adroll/api/user'
+
 require 'adroll/client'
-require 'adroll/event'
-require 'adroll/facebook'
-require 'adroll/invoice'
-require 'adroll/mobile_app'
-require 'adroll/mobile_rule'
-require 'adroll/organization'
-require 'adroll/payment_method'
-require 'adroll/pixel'
-require 'adroll/report'
-require 'adroll/rollcrawl_configuration'
-require 'adroll/rule'
-require 'adroll/segment'
 require 'adroll/service'
-require 'adroll/user'
+require 'adroll/utils'
 
 module AdRoll
   module Api
@@ -47,6 +49,14 @@ module AdRoll
       @user_name = user_name
       @password = password
       @organization_eid = organization_eid
+    end
+
+    def self.services
+      self.constants.select { |c| Class === self.const_get(c) } - [:Service]
+    end
+
+    def self.service_classes
+      services.map { |m| "#{self.name}::#{m}".constantize }
     end
 
     def self.included(base)
