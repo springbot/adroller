@@ -9,6 +9,7 @@ module AdRoll
       end
 
       def self.method_missing(meth, *args, &block)
+        # @TODO add logging functionality and put deprecation warnings here
         klass = self.new
         klass.send(meth, *args)
       end
