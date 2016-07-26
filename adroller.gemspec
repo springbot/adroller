@@ -20,10 +20,14 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'byebug', '~> 3.4', '>= 3.4.0'
+  spec.add_development_dependency 'pry-byebug', '~> 3.4', '>= 3.4.0'
   spec.add_development_dependency 'rspec', '~> 3.0', '>= 3.0.0'
-  spec.add_development_dependency 'webmock', '~> 1.18', '>= 1.18.0'
+  spec.add_development_dependency 'webmock', '~> 2.1'
   spec.add_development_dependency 'factory_girl', '~> 4.4', '>= 4.4.0'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency "codecov"
+
   spec.add_dependency 'httparty', '~> 0.13.1'
   spec.add_dependency 'httmultiparty', '~> 0.3.13'
 end

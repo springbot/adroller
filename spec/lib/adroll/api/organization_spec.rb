@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Organization do
+  let!(:base_uri) { "https://api.adroll.com/v1/organization" }
 
   subject { described_class }
 
   describe '::get' do
-    let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/organization/get" }
+    let!(:request_uri) { "#{base_uri}/get" }
 
     let!(:params) do
       {
@@ -21,8 +21,7 @@ describe AdRoll::Api::Organization do
   end
 
   describe '::get_advertisables' do
-    let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/organization/get_advertisables" }
+    let!(:request_uri) { "#{base_uri}/get_advertisables" }
 
     let!(:params) do
       {
@@ -37,8 +36,7 @@ describe AdRoll::Api::Organization do
   end
 
   describe '::get_billing_methods' do
-    let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/organization/get_billing_methods" }
+    let!(:request_uri) { "#{base_uri}/get_billing_methods" }
 
     let!(:params) do
       {
@@ -53,8 +51,7 @@ describe AdRoll::Api::Organization do
   end
 
   describe '::get_users' do
-    let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/organization/get_users" }
+    let!(:request_uri) { "#{base_uri}/get_users" }
 
     let!(:params) do
       {
@@ -69,8 +66,7 @@ describe AdRoll::Api::Organization do
   end
 
   describe '::reset' do
-    let!(:basic_auth) { "#{AdRoll::Api.user_name}:#{AdRoll::Api.password}" }
-    let!(:request_uri) { "https://#{basic_auth}@api.adroll.com/v1/organization/reset" }
+    let!(:request_uri) { "#{base_uri}/reset" }
 
     let!(:params) do
       {

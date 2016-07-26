@@ -1,7 +1,8 @@
-# Adroller: An API Wrapper for AdRoll
+# Adroller: An API Wrapper for AdRoll [![codecov](https://codecov.io/gh/springbot/adroller/branch/master/graph/badge.svg)](https://codecov.io/gh/springbot/adroller)
 ========
 
 ![alt tag](https://upload.wikimedia.org/wikipedia/commons/8/86/AdRoll.png)
+
 
 
 ## Installation
@@ -45,7 +46,7 @@ ENV['ADROLL_ORGANIZATION'] = 'Your Organization eid'
 Method Calls
 ============
 
-This gem uses basic abstraction for the AdRoll services
+This gem uses basic abstraction for the AdRoll services 
 
 A method call will return a JSON response directly from the api
 
