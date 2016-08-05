@@ -3,7 +3,7 @@ require 'adroll/service'
 module AdRoll
   module Api
     class Facebook < AdRoll::Api::Service
-      WHITELIST_PARAMS = [:page_url, :account_id]
+      WHITELIST_PARAMS = [:page_url, :account_id, :advertiser_eid]
 
       def fb_page_url(params)
         call_api(:post, __method__, validate_params(params))

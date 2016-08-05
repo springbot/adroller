@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adroller (1.5.0)
+    adroller (1.5.1)
       httmultiparty (~> 0.3.13)
       httparty (~> 0.13.1)
 
@@ -59,7 +59,7 @@ GEM
       ruby_dep (~> 1.2)
     lumberjack (1.0.10)
     method_source (0.8.2)
-    mimemagic (0.3.1)
+    mimemagic (0.3.2)
     minitest (5.4.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
