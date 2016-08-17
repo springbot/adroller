@@ -35,7 +35,7 @@ module AdRoll
           url: url
         }
 
-        call_api(:get, __method__, params)
+        call_api(:post, __method__, params)
       end
 
       def get(advertisable:)

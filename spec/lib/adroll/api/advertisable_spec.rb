@@ -64,14 +64,9 @@ describe AdRoll::Api::Advertisable do
       }
     end
 
-    let!(:escaped_params) do
-      params[:url] = CGI.escape(params[:url])
-      params
-    end
-
     it 'calls the api with the correct params' do
       subject.enable_rollcrawl(params)
-      expect(WebMock).to have_requested(:get, request_uri).with(query: escaped_params)
+      expect(WebMock).to have_requested(:post, request_uri).with(body: params)
     end
   end
 
