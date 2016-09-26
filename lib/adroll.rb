@@ -19,14 +19,21 @@ require 'adroll/api/rule'
 require 'adroll/api/segment'
 require 'adroll/api/user'
 
+require 'adroll/uhura/attributions'
+require 'adroll/uhura/deliveries'
+
 require 'adroll/client'
 require 'adroll/service'
 require 'adroll/utils'
 
 module AdRoll
   module Api
-    def self.base_url
+    def self.api_base_url
       'https://api.adroll.com/v1'
+    end
+
+    def self.uhura_base_url
+      'https://app.adroll.com/uhura/v1'
     end
 
     def self.user_name
