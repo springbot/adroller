@@ -1,6 +1,11 @@
 require 'httparty'
 require 'httmultiparty'
 
+require 'adroll/client'
+require 'adroll/service'
+require 'adroll/utils'
+
+require 'adroll/api/service'
 require 'adroll/api/ad'
 require 'adroll/api/adgroup'
 require 'adroll/api/advertisable'
@@ -19,12 +24,9 @@ require 'adroll/api/rule'
 require 'adroll/api/segment'
 require 'adroll/api/user'
 
+require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
-
-require 'adroll/client'
-require 'adroll/service'
-require 'adroll/utils'
 
 module AdRoll
   module Api

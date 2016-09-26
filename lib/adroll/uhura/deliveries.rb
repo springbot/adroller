@@ -1,4 +1,4 @@
-require 'adroll/service'
+require 'adroll/uhura/service'
 
 module AdRoll
   module Uhura

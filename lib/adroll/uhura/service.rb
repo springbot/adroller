@@ -1,3 +1,5 @@
+require 'adroll/service'
+
 module AdRoll
   module Uhura
     class Service < AdRoll::Service

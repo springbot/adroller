@@ -1,3 +1,5 @@
+require 'adroll/service'
+
 module AdRoll
   module Api
     class Service < AdRoll::Service
