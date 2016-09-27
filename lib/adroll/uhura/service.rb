@@ -4,7 +4,7 @@ module AdRoll
   module Uhura
     class Service < AdRoll::Service
       def service_url
-        File.join(AdRoll::Api.uhura_base_url, self.class.name.demodulize.underscore)
+        File.join(AdRoll.uhura_base_url, self.class.name.demodulize.underscore)
       end
 
       def call_api(request_method, endpoint, query_params)

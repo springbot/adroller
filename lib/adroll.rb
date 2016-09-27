@@ -29,54 +29,59 @@ require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
 
 module AdRoll
-  module Api
-    def self.api_base_url
-      'https://api.adroll.com/v1'
-    end
+  def self.api_base_url
+    'https://api.adroll.com/v1'
+  end
 
-    def self.uhura_base_url
-      'https://app.adroll.com/uhura/v1'
-    end
+  def self.uhura_base_url
+    'https://app.adroll.com/uhura/v1'
+  end
 
-    def self.user_name
-      @user_name || ENV['ADROLL_USERNAME']
-    end
+  def self.user_name
+    @user_name || ENV['ADROLL_USERNAME']
+  end
 
-    def self.password
-      @password || ENV['ADROLL_PASSWORD']
-    end
+  def self.password
+    @password || ENV['ADROLL_PASSWORD']
+  end
 
-    def self.debug?
-      ENV['DEBUG'] == 'true'
-    end
+  def self.debug?
+    ENV['DEBUG'] == 'true'
+  end
 
-    def self.organization_eid
-      @organization_eid || ENV['ADROLL_ORGANIZATION_EID']
-    end
+  def self.organization_eid
+    @organization_eid || ENV['ADROLL_ORGANIZATION_EID']
+  end
 
-    def self.set_account_data(user_name, password, organization_eid)
-      @user_name = user_name
-      @password = password
-      @organization_eid = organization_eid
-    end
+  def self.set_account_data(user_name, password, organization_eid)
+    @user_name = user_name
+    @password = password
+    @organization_eid = organization_eid
+  end
 
-    def self.services
-      self.constants.select { |c| Class === self.const_get(c) } - [:Service]
-    end
+  def self.uhura_services
+    AdRoll::Uhura.constants.select { |c| Class === AdRoll::Uhura.const_get(c) } - [:Service]
+  end
 
-    def self.service_classes
-      services.map { |m| "#{self.name}::#{m}".constantize }
-    end
+  def self.api_services
+    AdRoll::Api.constants.select { |c| Class === AdRoll::Api.const_get(c) } - [:Service]
+  end
 
-    def self.included(base)
-      base.class_eval do
-        class << self
+  def self.uhura_service_classes
+    uhura_services.map { |m| "#{AdRoll::Uhura.name}::#{m}".constantize }
+  end
 
-          def set_account_data(user_name: , password: , organization_eid: )
-            AdRoll::Api.set_account_data(user_name, password, organization_eid)
-          end
+  def self.api_service_classes
+    api_services.map { |m| "#{AdRoll::Api.name}::#{m}".constantize }
+  end
+  def self.included(base)
+    base.class_eval do
+      class << self
 
+        def set_account_data(user_name: , password: , organization_eid: )
+          AdRoll.set_account_data(user_name, password, organization_eid)
         end
+
       end
     end
   end

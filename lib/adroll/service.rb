@@ -32,15 +32,15 @@ module AdRoll
     end
 
     def username
-      (client && client.user_name) || AdRoll::Api.user_name
+      (client && client.user_name) || AdRoll.user_name
     end
 
     def password
-      (client && client.password) || AdRoll::Api.password
+      (client && client.password) || AdRoll.password
     end
 
     def debug_output
-      $stdout if (client && client.debug?) || AdRoll::Api.debug?
+      $stdout if (client && client.debug?) || AdRoll.debug?
     end
 
     def call_api(request_method, endpoint, query_params)
