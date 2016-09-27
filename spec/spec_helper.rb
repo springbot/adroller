@@ -20,7 +20,10 @@ RSpec.configure do |config|
       .with(basic_auth: ['USERNAME', 'PASSWORD'])
       .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
 
-    AdRoll::Api.set_account_data('USERNAME', 'PASSWORD', 'ORG123XYZ')
+    stub_request(:any, /https:\/\/app.adroll.com\/.*/)
+      .with(basic_auth: ['USERNAME', 'PASSWORD'])
+      .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
+    AdRoll.set_account_data('USERNAME', 'PASSWORD', 'ORG123XYZ')
   end
 end
 
