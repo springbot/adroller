@@ -8,7 +8,7 @@ describe AdRoll::Uhura::Userlists do
 
 
   describe '::ad' do
-    let!(:request_uri) { "#{base_uri}/userlists" }
+    let!(:request_uri) { "#{base_uri}/ad" }
     let!(:params) do
       { ad_eids: 'AD123' }
     end
