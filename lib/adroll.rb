@@ -27,6 +27,7 @@ require 'adroll/api/user'
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
+require 'adroll/uhura/userlists'
 
 module AdRoll
   def self.api_base_url
