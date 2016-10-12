@@ -37,11 +37,11 @@ Setup
 
 Set your API username, password and organization eid in your environment
 
+```ruby
 ENV['ADROLL_USERNAME'] = 'Your User Name'
-
 ENV['ADROLL_PASSWORD'] = 'Your Password'
-
 ENV['ADROLL_ORGANIZATION'] = 'Your Organization eid'
+```
 
 Method Calls
 ============
@@ -50,24 +50,23 @@ This gem uses basic abstraction for the AdRoll services
 
 A method call will return a JSON response directly from the api
 
+```ruby
 AdRoll::Api::{Endpoint Name}.{Endpoint Method}({Endpoint Parameters})
+```
 
 Example
 =========
+
+```ruby
 params = {
-
     name: 'My Advertisable',
-
     organization: 'FDS32DFA3DK341B4KAL4RK',
-
     set_as_default: true,
-
     url: 'http://www.thisisaurl.com',
-
     product_name: 'My Product'
-
-  }
+}
 
 advertisable = AdRoll::Api::Advertisable.create(params)
+=> {:name => 'My Advertisable' ... }
+```
 
-  => {:name => 'My Advertisable' ... }
