@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'httparty', '~> 0.13.1'
   spec.add_dependency 'httmultiparty', '~> 0.3.13'
+  spec.add_dependency 'activesupport', '>= 3.2'
 end
