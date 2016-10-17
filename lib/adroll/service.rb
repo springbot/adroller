@@ -49,7 +49,7 @@ module AdRoll
       if request_method == :get
         # For get requests, format the query params as defined by the AdRoll
         # Spec - lists should be ?param=PARAM1,PARAM2
-        response = ::HTTPartyWrapper.send(request_method, request_uri,
+        response = ::AdRoll::HTTPartyWrapper.send(request_method, request_uri,
                                  basic_auth: basic_auth, query: query_params, debug_output: debug_output)
       else
         if request_uri == 'https://api.adroll.com/v1/ad/create'
