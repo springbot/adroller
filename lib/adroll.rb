@@ -29,6 +29,8 @@ require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
 require 'adroll/uhura/userlists'
 
+require 'httparty_wrapper/httparty_wrapper'
+
 module AdRoll
   def self.api_base_url
     'https://api.adroll.com/v1'

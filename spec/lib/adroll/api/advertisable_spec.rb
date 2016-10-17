@@ -91,7 +91,7 @@ describe AdRoll::Api::Advertisable do
     let!(:params) do
       {
         advertisable: 'xyz456',
-        statuses: %w(admin_review admin_paused)
+        statuses: %w(admin_review admin_paused).join(',')
       }
     end
 
