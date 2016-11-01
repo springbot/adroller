@@ -1,37 +1,28 @@
 module AdRoll
   module Api
     class Pixel < AdRoll::Api::Service
-      def get(pixel:)
-        params = {
-          pixel: pixel
-        }.reject { |_, value| value.nil? }
+      WHITELIST_PARAMS = [:pixel, :include_audience, :rules]
 
-        call_api(:get, __method__, params)
+      def get(params)
+        call_api(:get, __method__, validate_params(params))
       end
 
-      def get_rules(pixel:)
-        params = {
-          pixel: pixel
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def get_rules(params)
+        call_api(:get, __method__, validate_params(params))
       end
 
-      def get_segments(pixel:)
-        params = {
-          pixel: pixel
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def get_segments(params)
+        call_api(:get, __method__, validate_params(params))
       end
 
-      def reorder_rules(pixel:, rules:)
-        params = {
-          pixel: pixel,
-          rules: rules
-        }.reject { |_, value| value.nil? }
+      def reorder_rules(params)
+        call_api(:get, __method__, validate_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def validate_params(params)
+        params.reject { |key, value| !WHITELIST_PARAMS.include?(key) || value.nil? }
       end
     end
   end
