@@ -7,7 +7,9 @@ module AdRoll
                           :headline, :body, :message, :headline_dynamic,
                           :body_dynamic, :message_dynamic, :is_fb_dynamic,
                           :dynamic_template_id, :product, :logo, :background,
-                          :call_to_action, :multiple_products, :tracking]
+                          :call_to_action, :multiple_products, :tracking,
+                          :lead_gen_form_id, :multi_share_optimized, :child_ads,
+                          :app_id, :ad_format, :prefix, :display_url_override, :type]
 
       def clone(params)
         call_api(:post, __method__, validate_params(params))
