@@ -47,7 +47,9 @@ module AdRoll
       request_uri = File.join(service_url, endpoint.to_s)
 
       if request_method == :get
-        response = HTTParty.send(request_method, request_uri,
+        # For get requests, format the query params as defined by the AdRoll
+        # Spec - lists should be ?param=PARAM1,PARAM2
+        response = ::AdRoll::HTTPartyWrapper.send(request_method, request_uri,
                                  basic_auth: basic_auth, query: query_params, debug_output: debug_output)
       else
         if request_uri == 'https://api.adroll.com/v1/ad/create'
@@ -55,6 +57,8 @@ module AdRoll
                                         basic_auth: basic_auth, body: query_params, debug_output: debug_output)
 
         else
+          # Unfortunately, HTTParty applies query_string_normalizer to `body`
+          # as well, so revert back to vanilla HTTParty for other requests.
           response = HTTParty.send(request_method, request_uri,
                                    basic_auth: basic_auth, body: query_params, debug_output: debug_output)
         end
