@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe AdRoll::Uhura::Attributions do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
-  let!(:base_uri) { "https://app.adroll.com/uhura/v1/attributions" }
+  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/attributions' }
 
   subject { described_class }
-
 
   describe '::ad' do
     let!(:request_uri) { "#{base_uri}/ad" }

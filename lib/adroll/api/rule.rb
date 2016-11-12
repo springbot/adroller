@@ -1,47 +1,31 @@
 module AdRoll
   module Api
     class Rule < AdRoll::Api::Service
-      def create(pixel:, type:, order:, name:, display_name: nil, pattern:, source: nil)
-        params = {
-          pixel: pixel,
-          type: type,
-          order: order,
-          name: name,
-          display_name: display_name,
-          pattern: pattern,
-          source: source
-        }.reject { |_, value| value.nil? }
+      WHITELIST_PARAMS = [:display_name, :name, :order, :pattern, :pixel,
+                          :rule, :source, :type].freeze
 
-        call_api(:post, __method__, params)
+      def create(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
-      def edit(rule:, order:, name:, display_name:, pattern:, source:)
-        params = {
-          rule: rule,
-          order: order,
-          name: name,
-          display_name: display_name,
-          pattern: pattern,
-          source: source
-        }.reject { |_, value| value.nil? }
-
-        call_api(:put, __method__, params)
+      def edit(params)
+        call_api(:put, __method__, sanitize_params(params))
       end
 
-      def get(rule:)
-        params = {
-          rule: rule
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def get_segments(rule:)
-        params = {
-          rule: rule
-        }.reject { |_, value| value.nil? }
+      def get_segments(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

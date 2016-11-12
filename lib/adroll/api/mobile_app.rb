@@ -1,65 +1,34 @@
 module AdRoll
   module Api
     class MobileApp < AdRoll::Api::Service
-      def create(pixel:, app_name:, os:, app_identifier:, source_type:, source_variant:,
-                 verbosity:, mission_elapsed_event_name:, mission_elapsed_time_threshold:)
+      WHITELIST_PARAMS = [:app_identifier, :app_name, :configuration, :eid,
+                          :mission_elapsed_event_name,
+                          :mission_elapsed_time_threshold, :mobile_app, :os,
+                          :pixel, :source_type, :source_variant,
+                          :verbosity].freeze
 
-        params = {
-          pixel: pixel,
-          app_name: app_name,
-          os: os,
-          app_identifier: app_identifier,
-          source_type: source_type,
-          source_variant: source_variant,
-          verbosity: verbosity,
-          mission_elapsed_event_name: mission_elapsed_event_name,
-          mission_elapsed_time_threshold: mission_elapsed_time_threshold
-        }.reject { |_, value| value.nil? }
-
-        call_api(:post, __method__, params)
+      def create(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
-      def delete(mobile_app:)
-        params = {
-          mobile_app: mobile_app
-        }.reject { |_, value| value.nil? }
-
-        call_api(:delete, __method__, params)
+      def delete(params)
+        call_api(:delete, __method__, sanitize_params(params))
       end
 
-      def edit(mobile_app:, app_name:, os:, app_identifier:, source_type:, source_variant:,
-               verbosity:, mission_elapsed_event_name:, mission_elapsed_time_threshold:)
-
-        params = {
-          mobile_app: mobile_app,
-          app_name: app_name,
-          os: os,
-          app_identifier: app_identifier,
-          source_type: source_type,
-          source_variant: source_variant,
-          verbosity: verbosity,
-          mission_elapsed_event_name: mission_elapsed_event_name,
-          mission_elapsed_time_threshold: mission_elapsed_time_threshold
-        }.reject { |_, value| value.nil? }
-
-        call_api(:put, __method__, params)
+      def edit(params)
+        call_api(:put, __method__, sanitize_params(params))
       end
 
-      def get(mobile_app:, pixel:, eid:, app_name:, os:, app_identifier:, source_type:, source_variant:,
-              configuration:)
-        params = {
-          mobile_app: mobile_app,
-          pixel: pixel,
-          eid: eid,
-          app_name: app_name,
-          os: os,
-          app_identifier: app_identifier,
-          source_type: source_type,
-          source_variant: source_variant,
-          configuration: configuration
-        }.reject { |_, value| value.nil? }
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

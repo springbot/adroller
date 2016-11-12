@@ -9,22 +9,11 @@ module AdRoll
 
       def call_api(request_method, endpoint, query_params)
         request_uri = File.join(service_url, endpoint.to_s)
-
-        if request_method == :get
-          response = HTTParty.send(request_method, request_uri,
-                                   basic_auth: basic_auth, query: query_params, debug_output: debug_output)
-        else
-          response = HTTParty.send(request_method, request_uri,
-                                   basic_auth: basic_auth, body: query_params, debug_output: debug_output)
-        end
-
-        begin
-          JSON.parse(response.body)
-        rescue JSON::ParserError
-          { error: 'JSON::ParserError', response: response.body }
-        end
+        response = make_api_call(request_method, request_uri, query_params)
+        JSON.parse(response.body)
+      rescue JSON::ParserError
+        { error: 'JSON::ParserError', response: response.body }
       end
-
     end
   end
 end

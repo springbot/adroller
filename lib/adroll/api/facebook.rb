@@ -3,14 +3,14 @@ require 'adroll/service'
 module AdRoll
   module Api
     class Facebook < AdRoll::Api::Service
-      WHITELIST_PARAMS = [:page_url, :account_id, :advertiser_eid]
+      WHITELIST_PARAMS = [:page_url, :account_id, :advertiser_eid].freeze
 
       def fb_page_url(params)
-        call_api(:post, __method__, validate_params(params))
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       def instagram_account(params)
-        call_api(:post, __method__, validate_params(params))
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       private
@@ -19,8 +19,10 @@ module AdRoll
         'https://api.adroll.com/facebook'
       end
 
-      def validate_params(params)
-        params.reject { |key, value| !WHITELIST_PARAMS.include?(key) || value.nil? }
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

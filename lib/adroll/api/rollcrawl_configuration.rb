@@ -1,17 +1,21 @@
 module AdRoll
   module Api
     class RollcrawlConfiguration < AdRoll::Api::Service
-      def edit(advertisable:, product_id_from_page_scheme: nil, product_id_from_page_regular_expression: nil,
-               product_id_from_page_attribute: nil)
+      WHITELIST_PARAMS = [:advertisable,
+                          :product_id_from_page_scheme,
+                          :product_id_from_page_regular_expression,
+                          :product_id_from_page_attribute].freeze
 
-        params = {
-          advertisable: advertisable,
-          product_id_from_page_scheme: product_id_from_page_scheme,
-          product_id_from_page_regular_expression: product_id_from_page_regular_expression,
-          product_id_from_page_attribute: product_id_from_page_attribute
-        }.reject { |_, value| value.nil? }
+      def edit(params)
+        call_api(:put, __method__, sanitize_params(params))
+      end
 
-        call_api(:put, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

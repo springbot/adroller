@@ -8,3 +8,9 @@
 # Offense count: 3
 Style/Documentation:
   Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/MethodMissing:
+  Enabled: false

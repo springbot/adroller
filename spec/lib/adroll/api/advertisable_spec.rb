@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Advertisable do
-  let!(:base_uri) { "https://api.adroll.com/v1/advertisable" }
+  let!(:base_uri) { 'https://api.adroll.com/v1/advertisable' }
 
   subject { described_class }
 
@@ -26,7 +26,8 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.create(params)
-      expect(WebMock).to have_requested(:post, request_uri).with(body: escaped_params)
+      expect(WebMock).to have_requested(:post, request_uri)
+        .with(body: escaped_params)
     end
   end
 
@@ -50,7 +51,8 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.edit(params)
-      expect(WebMock).to have_requested(:put, request_uri).with(body: escaped_params)
+      expect(WebMock).to have_requested(:put, request_uri)
+        .with(body: escaped_params)
     end
   end
 
@@ -129,7 +131,7 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.get_campaigns(params)
-      expect(WebMock).to have_requested(:get, request_uri).with(query: params.merge(is_active: 'true'))
+      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end
 
@@ -147,7 +149,8 @@ describe AdRoll::Api::Advertisable do
     it 'calls the api with the correct params' do
       subject.get_coops(params)
       expect(WebMock).to have_requested(:get, request_uri)
-        .with(query: params.merge(filter_active: 'false', coops_active: 'false'))
+        .with(query: params.merge(filter_active: 'false',
+                                  coops_active: 'false'))
     end
   end
 

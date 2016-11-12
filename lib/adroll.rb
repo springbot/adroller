@@ -64,11 +64,17 @@ module AdRoll
   end
 
   def self.uhura_services
-    AdRoll::Uhura.constants.select { |c| Class === AdRoll::Uhura.const_get(c) } - [:Service]
+    uhura_services = AdRoll::Uhura.constants.select do |c|
+      AdRoll::Uhura.const_get(c).is_a?(Class)
+    end
+    uhura_services - [:Service]
   end
 
   def self.api_services
-    AdRoll::Api.constants.select { |c| Class === AdRoll::Api.const_get(c) } - [:Service]
+    api_services = AdRoll::Api.constants.select do |c|
+      AdRoll::Api.const_get(c).is_a?(Class)
+    end
+    api_services - [:Service]
   end
 
   def self.uhura_service_classes
@@ -78,14 +84,13 @@ module AdRoll
   def self.api_service_classes
     api_services.map { |m| "#{AdRoll::Api.name}::#{m}".constantize }
   end
+
   def self.included(base)
     base.class_eval do
       class << self
-
-        def set_account_data(user_name: , password: , organization_eid: )
+        def set_account_data(user_name:, password:, organization_eid:)
           AdRoll.set_account_data(user_name, password, organization_eid)
         end
-
       end
     end
   end

@@ -47,7 +47,9 @@ describe AdRoll do
     subject { Dummy }
 
     before do
-      subject.set_account_data(user_name: 'username', password: 'abc', organization_eid: 'abc123')
+      subject.set_account_data(user_name: 'username',
+                               password: 'abc',
+                               organization_eid: 'abc123')
     end
 
     it 'sets user_name' do

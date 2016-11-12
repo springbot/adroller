@@ -16,12 +16,12 @@ RSpec.configure do |config|
   config.color = true
 
   config.before(:each) do
-    stub_request(:any, /https:\/\/api.adroll.com\/.*/)
-      .with(basic_auth: ['USERNAME', 'PASSWORD'])
+    stub_request(:any, %r{https:\/\/api.adroll.com\/.*})
+      .with(basic_auth: %w(USERNAME PASSWORD))
       .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
 
-    stub_request(:any, /https:\/\/app.adroll.com\/.*/)
-      .with(basic_auth: ['USERNAME', 'PASSWORD'])
+    stub_request(:any, %r{https:\/\/app.adroll.com\/.*})
+      .with(basic_auth: %w(USERNAME PASSWORD))
       .to_return(status: [200, 'OK'], body: { results: {} }.to_json)
     AdRoll.set_account_data('USERNAME', 'PASSWORD', 'ORG123XYZ')
   end

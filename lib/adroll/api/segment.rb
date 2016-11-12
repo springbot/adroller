@@ -1,22 +1,22 @@
 module AdRoll
   module Api
     class Segment < AdRoll::Api::Service
-      def edit(segment: , conversion_value: nil, duration: nil)
-        params = {
-          segment: segment,
-          conversion_value: conversion_value,
-          duration: duration
-        }.reject { |_, value| value.nil? }
+      WHITELIST_PARAMS = [:conversion_value, :duration, :segment].freeze
 
-        call_api(:post, __method__, params)
+      def edit(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
-      def get(segment:)
-        params = {
-          segment: segment
-        }.reject { |_, value| value.nil? }
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end
