@@ -29,6 +29,10 @@ module AdRoll
         call_api(:get, __method__, sanitize_params(params))
       end
 
+      def get_adgroups_fast(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
+
       def get_ads(params)
         call_api(:get, __method__, sanitize_params(params))
       end
@@ -41,6 +45,11 @@ module AdRoll
         call_api(:get, __method__, sanitize_params(params))
       end
 
+      def get_campaigns_fast(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
+
+      # undocumented
       def get_coops(params)
         call_api(:get, __method__, sanitize_params(params))
       end
@@ -51,6 +60,10 @@ module AdRoll
 
       def get_segments(params)
         call_api(:get, __method__, sanitize_params(params))
+      end
+
+      def set_source(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       private

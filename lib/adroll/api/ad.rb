@@ -28,6 +28,7 @@ module AdRoll
         call_api(:get, __method__, sanitize_params(params))
       end
 
+      # undocumented
       def set_outline(params)
         call_api(:get, __method__, sanitize_params(params))
       end

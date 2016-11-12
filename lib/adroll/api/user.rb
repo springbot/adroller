@@ -7,6 +7,7 @@ module AdRoll
                           :first_name, :last_name, :organization_role, :u,
                           :user, :username].freeze
 
+      # undocumented
       def deactivate(params)
         call_api(:get, __method__, sanitize_params(params))
       end

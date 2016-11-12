@@ -32,6 +32,7 @@ module AdRoll
         call_api(:get, __method__, sanitize_params(params))
       end
 
+      # undocumented
       def approve_ad(params)
         call_api(:get, __method__, sanitize_params(params))
       end

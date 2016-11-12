@@ -19,6 +19,7 @@ module AdRoll
         call_api(:get, __method__, sanitize_params(params))
       end
 
+      # undocumented
       def reset(params)
         call_api(:get, __method__, sanitize_params(params))
       end
