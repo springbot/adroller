@@ -28,6 +28,8 @@ require 'adroll/api/user'
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
+require 'adroll/uhura/deliveries/domain'
+require 'adroll/uhura/segment_deliveries'
 require 'adroll/uhura/userlists'
 
 require 'adroll/httparty_wrapper'

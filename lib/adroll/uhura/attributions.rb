@@ -3,9 +3,9 @@ require 'adroll/uhura/service'
 module AdRoll
   module Uhura
     class Attributions < AdRoll::Uhura::Service
-      WHITELIST_PARAMS = [:breakdowns, :advertisable_eid, :segment_eids,
-                          :adgroup_eids, :ad_eids, :start_date, :end_date,
-                          :past_days, :currency].freeze
+      WHITELIST_PARAMS = [:ad_eids, :adgroup_eids, :advertisable_eid,
+                          :breakdowns, :currency, :end_date, :past_days,
+                          :segment_eids, :start_date].freeze
 
       def ad(params)
         call_api(:get, __method__, sanitize_params(params))
