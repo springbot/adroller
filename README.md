@@ -3,7 +3,8 @@
 
 ![alt tag](https://upload.wikimedia.org/wikipedia/commons/8/86/AdRoll.png)
 
-
+## Documentation
+[AdRoll Developer Documentation](https://developers.adroll.com/index.html)
 
 ## Installation
 
@@ -46,7 +47,7 @@ ENV['ADROLL_ORGANIZATION'] = 'Your Organization eid'
 Method Calls
 ============
 
-This gem uses basic abstraction for the AdRoll services 
+This gem uses basic abstraction for the AdRoll services
 
 A method call will return a JSON response directly from the api
 
@@ -69,4 +70,3 @@ params = {
 advertisable = AdRoll::Api::Advertisable.create(params)
 => {:name => 'My Advertisable' ... }
 ```
-
