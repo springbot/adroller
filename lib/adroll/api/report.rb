@@ -1,58 +1,28 @@
 module AdRoll
   module Api
     class Report < AdRoll::Api::Service
-      def ad(campaigns: nil, adgroups: nil, ads: nil, advertisables: nil,
-             data_format:, past_days: nil, start_date: nil, end_date: nil, attributions: nil)
+      WHITELIST_PARAMS = [:adgroups, :ads, :advertisables, :attributions,
+                          :campaigns, :data_format, :end_date, :past_days,
+                          :start_date].freeze
 
-        params = {
-          campaigns: campaigns,
-          adgroups: adgroups,
-          ads: ads,
-          advertisables: advertisables,
-          data_format: data_format,
-          past_days: past_days,
-          start_date: start_date,
-          end_date: end_date,
-          attributions: attributions
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def ad(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def advertisable(campaigns: nil, adgroups: nil, ads: nil, advertisables: nil,
-                       data_format:, past_days: nil, start_date: nil, end_date: nil, attributions: nil)
-
-        params = {
-          campaigns: campaigns,
-          adgroups: adgroups,
-          ads: ads,
-          advertisables: advertisables,
-          data_format: data_format,
-          past_days: past_days,
-          start_date: start_date,
-          end_date: end_date,
-          attributions: attributions
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def advertisable(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def campaign(campaigns: nil, adgroups: nil, ads: nil, advertisables: nil,
-                   data_format:, past_days: nil, start_date: nil, end_date: nil, attributions: nil)
+      def campaign(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
 
-        params = {
-          campaigns: campaigns,
-          adgroups: adgroups,
-          ads: ads,
-          advertisables: advertisables,
-          data_format: data_format,
-          past_days: past_days,
-          start_date: start_date,
-          end_date: end_date,
-          attributions: attributions
-        }.reject { |_, value| value.nil? }
+      private
 
-        call_api(:get, __method__, params)
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

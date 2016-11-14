@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe AdRoll::Uhura::Deliveries do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
-  let!(:base_uri) { "https://app.adroll.com/uhura/v1/deliveries" }
+  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/deliveries' }
 
   subject { described_class }
-
 
   describe '::ad' do
     let!(:request_uri) { "#{base_uri}/ad" }
@@ -43,14 +42,14 @@ describe AdRoll::Uhura::Deliveries do
     end
   end
 
-  describe '::export' do
-    let!(:request_uri) { "#{base_uri}/export" }
+  describe '::campaign' do
+    let!(:request_uri) { "#{base_uri}/campaign" }
     let!(:params) do
       { ad_eids: 'AD123' }
     end
 
     it 'calls the api with the correct params' do
-      subject.export(ad_eids: 'AD123')
+      subject.campaign(ad_eids: 'AD123')
       expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end
@@ -63,6 +62,18 @@ describe AdRoll::Uhura::Deliveries do
 
     it 'calls the api with the correct params' do
       subject.domain(ad_eids: 'AD123')
+      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
+    end
+  end
+
+  describe '::export' do
+    let!(:request_uri) { "#{base_uri}/export" }
+    let!(:params) do
+      { ad_eids: 'AD123' }
+    end
+
+    it 'calls the api with the correct params' do
+      subject.export(ad_eids: 'AD123')
       expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end

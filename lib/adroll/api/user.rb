@@ -1,45 +1,35 @@
 module AdRoll
   module Api
     class User < AdRoll::Api::Service
-      def deactivate(user:)
-        params = {
-          user: user
-        }.reject { |_, value| value.nil? }
+      WHITELIST_PARAMS = [:advertisables,
+                          :email_preference_campaign_notifications,
+                          :email_preference_general, :email_preference_payment,
+                          :first_name, :last_name, :organization_role, :u,
+                          :user, :username].freeze
 
-        call_api(:get, __method__, params)
+      # undocumented
+      def deactivate(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def edit(u:, username:, first_name:, last_name:, email_preference_general:,
-               email_preference_payment:, email_preference_campaign_notifications:)
-        params = {
-          u: u,
-          username: username,
-          first_name: first_name,
-          last_name: last_name,
-          email_preference_general: email_preference_general,
-          email_preference_payment: email_preference_payment,
-          email_preference_campaign_notifications: email_preference_campaign_notifications
-        }.reject { |_, value| value.nil? }
-
-        call_api(:put, __method__, params)
+      def edit(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
-      def get(user:)
-        params = {
-          user: user
-        }.reject { |_, value| value.nil? }
-
-        call_api(:get, __method__, params)
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def grant(u:, advertisables:, organization_role:)
-        params = {
-          u: u,
-          advertisables: advertisables,
-          organization_role: organization_role
-        }.reject { |_, value| value.nil? }
+      def grant(params)
+        call_api(:post, __method__, sanitize_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

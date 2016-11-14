@@ -1,34 +1,10 @@
 require 'spec_helper'
 
-describe AdRoll::Uhura::Attributions do
+describe AdRoll::Uhura::SegmentDeliveries do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
-  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/attributions' }
+  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/segment-deliveries' }
 
   subject { described_class }
-
-  describe '::ad' do
-    let!(:request_uri) { "#{base_uri}/ad" }
-    let!(:params) do
-      { ad_eids: 'AD123' }
-    end
-
-    it 'calls the api with the correct params' do
-      subject.ad(ad_eids: 'AD123')
-      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
-    end
-  end
-
-  describe '::adgroup' do
-    let!(:request_uri) { "#{base_uri}/adgroup" }
-    let!(:params) do
-      { ad_eids: 'AD123' }
-    end
-
-    it 'calls the api with the correct params' do
-      subject.adgroup(ad_eids: 'AD123')
-      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
-    end
-  end
 
   describe '::advertisable' do
     let!(:request_uri) { "#{base_uri}/advertisable" }

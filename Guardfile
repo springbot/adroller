@@ -1,5 +1,7 @@
-guard :rspec, cmd: "bundle exec rspec --color -f documentation", failed_mode: :keep do
-  require "guard/rspec/dsl"
+guard :rspec,
+      cmd: 'bundle exec rspec --color -f documentation',
+      failed_mode: :keep do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # RSpec files
@@ -8,7 +10,7 @@ guard :rspec, cmd: "bundle exec rspec --color -f documentation", failed_mode: :k
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
 
-  watch(%r{^lib/(.+)\.rb$})       { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch(%r{^lib/(.+)\.rb$}) { |m| "spec/lib/#{m[1]}_spec.rb" }
 
   # Ruby files
   ruby = dsl.ruby

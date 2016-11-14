@@ -1,44 +1,35 @@
 module AdRoll
   module Api
     class Organization < AdRoll::Api::Service
-      def get(organization: nil)
-        params = {
-          organization: organization
-        }
+      WHITELIST_PARAMS = [:organization].freeze
 
-        call_api(:get, __method__, params)
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def get_advertisables(organization: nil)
-        params = {
-          organization: organization
-        }
-
-        call_api(:get, __method__, params)
+      def get_advertisables(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def get_billing_methods(organization: nil)
-        params = {
-          organization: organization
-        }
-
-        call_api(:get, __method__, params)
+      def get_billing_methods(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def get_users(organization: nil)
-        params = {
-          organization: organization
-        }
-
-        call_api(:get, __method__, params)
+      def get_users(params)
+        call_api(:get, __method__, sanitize_params(params))
       end
 
-      def reset(organization:)
-        params = {
-          organization: organization
-        }
+      # undocumented
+      def reset(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
 
-        call_api(:get, __method__, params)
+      private
+
+      def sanitize_params(params)
+        params.reject do |key, value|
+          !WHITELIST_PARAMS.include?(key) || value.nil?
+        end
       end
     end
   end

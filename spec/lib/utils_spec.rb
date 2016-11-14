@@ -7,9 +7,9 @@ describe AdRoll::Utils do
 
     context 'when it does not recieve a string' do
       it 'should raise an exception' do
-        expect {
+        expect do
           described_class.snakecase(:SnakeCase)
-        }.to raise_error ArgumentError
+        end.to raise_error ArgumentError
       end
     end
   end

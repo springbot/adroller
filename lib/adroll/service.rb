@@ -7,9 +7,9 @@ module AdRoll
       method_missing(:clone, params)
     end
 
-    def self.method_missing(meth, *args, &block)
+    def self.method_missing(meth, *args)
       # @TODO add logging functionality and put deprecation warnings here
-      klass = self.new
+      klass = new
       klass.send(meth, *args)
     end
 
@@ -45,30 +45,48 @@ module AdRoll
 
     def call_api(request_method, endpoint, query_params)
       request_uri = File.join(service_url, endpoint.to_s)
+      response = make_api_call(request_method, request_uri, query_params)
+      JSON.parse(response.body)
+    rescue JSON::ParserError
+      { error: 'JSON::ParserError', response: response.body }
+    end
 
+    def make_api_call(request_method, request_uri, query_params)
       if request_method == :get
-        # For get requests, format the query params as defined by the AdRoll
-        # Spec - lists should be ?param=PARAM1,PARAM2
-        response = ::AdRoll::HTTPartyWrapper.send(request_method, request_uri,
-                                 basic_auth: basic_auth, query: query_params, debug_output: debug_output)
+        perform_get(request_method, request_uri, query_params)
+      elsif request_uri == 'https://api.adroll.com/v1/ad/create'
+        perform_multi_post(request_method, request_uri, query_params)
       else
-        if request_uri == 'https://api.adroll.com/v1/ad/create'
-          response = HTTMultiParty.send(request_method, request_uri,
-                                        basic_auth: basic_auth, body: query_params, debug_output: debug_output)
-
-        else
-          # Unfortunately, HTTParty applies query_string_normalizer to `body`
-          # as well, so revert back to vanilla HTTParty for other requests.
-          response = HTTParty.send(request_method, request_uri,
-                                   basic_auth: basic_auth, body: query_params, debug_output: debug_output)
-        end
+        perform_post(request_method, request_uri, query_params)
       end
+    end
 
-      begin
-        JSON.parse(response.body)
-      rescue JSON::ParserError
-        { error: 'JSON::ParserError', response: response.body }
-      end
+    def perform_get(request_method, request_uri, query_params)
+      # For get requests, format the query params as defined by the AdRoll
+      # Spec - lists should be ?param=PARAM1,PARAM2
+      ::AdRoll::HTTPartyWrapper.send(request_method,
+                                     request_uri,
+                                     basic_auth: basic_auth,
+                                     query: query_params,
+                                     debug_output: debug_output)
+    end
+
+    def perform_multi_post(request_method, request_uri, query_params)
+      HTTMultiParty.send(request_method,
+                         request_uri,
+                         basic_auth: basic_auth,
+                         body: query_params,
+                         debug_output: debug_output)
+    end
+
+    def perform_post(request_method, request_uri, query_params)
+      # Unfortunately, HTTParty applies query_string_normalizer to `body`
+      # as well, so revert back to vanilla HTTParty for other requests.
+      HTTParty.send(request_method,
+                    request_uri,
+                    basic_auth: basic_auth,
+                    body: query_params,
+                    debug_output: debug_output)
     end
   end
 end

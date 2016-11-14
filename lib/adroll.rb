@@ -11,13 +11,9 @@ require 'adroll/api/ad'
 require 'adroll/api/adgroup'
 require 'adroll/api/advertisable'
 require 'adroll/api/campaign'
-require 'adroll/api/event'
 require 'adroll/api/facebook'
 require 'adroll/api/invoice'
-require 'adroll/api/mobile_app'
-require 'adroll/api/mobile_rule'
 require 'adroll/api/organization'
-require 'adroll/api/payment_method'
 require 'adroll/api/pixel'
 require 'adroll/api/report'
 require 'adroll/api/rollcrawl_configuration'
@@ -28,6 +24,8 @@ require 'adroll/api/user'
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
 require 'adroll/uhura/deliveries'
+require 'adroll/uhura/deliveries/domain'
+require 'adroll/uhura/segment_deliveries'
 require 'adroll/uhura/userlists'
 
 require 'adroll/httparty_wrapper'
@@ -64,11 +62,17 @@ module AdRoll
   end
 
   def self.uhura_services
-    AdRoll::Uhura.constants.select { |c| Class === AdRoll::Uhura.const_get(c) } - [:Service]
+    uhura_services = AdRoll::Uhura.constants.select do |c|
+      AdRoll::Uhura.const_get(c).is_a?(Class)
+    end
+    uhura_services - [:Service]
   end
 
   def self.api_services
-    AdRoll::Api.constants.select { |c| Class === AdRoll::Api.const_get(c) } - [:Service]
+    api_services = AdRoll::Api.constants.select do |c|
+      AdRoll::Api.const_get(c).is_a?(Class)
+    end
+    api_services - [:Service]
   end
 
   def self.uhura_service_classes
@@ -78,14 +82,13 @@ module AdRoll
   def self.api_service_classes
     api_services.map { |m| "#{AdRoll::Api.name}::#{m}".constantize }
   end
+
   def self.included(base)
     base.class_eval do
       class << self
-
-        def set_account_data(user_name: , password: , organization_eid: )
+        def set_account_data(user_name:, password:, organization_eid:)
           AdRoll.set_account_data(user_name, password, organization_eid)
         end
-
       end
     end
   end

@@ -10,7 +10,7 @@ task :console do
   require 'adroller'
 
   def reload!
-    files = $LOADED_FEATURES.select { |feat| feat =~ /\/rxsd\// }
+    files = $LOADED_FEATURES.select { |feat| feat =~ %r{\/rxsd\/} }
     files.each { |file| load file }
   end
 
@@ -18,4 +18,4 @@ task :console do
   Pry.start
 end
 
-task :default => :spec
+task default: :spec
