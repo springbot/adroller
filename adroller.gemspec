@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec'
   spec.add_development_dependency 'rubocop', '~> 0.45.0'
   spec.add_development_dependency 'codecov'
-  spec.add_development_dependency "ruby_dep", '~> 1.3.1'
+  spec.add_development_dependency 'ruby_dep', '~> 1.3.1'
 
   spec.add_dependency 'httparty', '~> 0.13.1'
   spec.add_dependency 'httmultiparty', '~> 0.3.13'

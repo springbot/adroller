@@ -8,9 +8,9 @@ module AdRoll
                           :geo_targets_regions, :height, :is_active,
                           :is_negative, :max_age, :min_age, :name,
                           :negative_segments, :os, :os_version, :placement,
-                          :positive_segments, :segments, :site, :status,
-                          :statuses, :target_max, :target_min, :type, :types,
-                          :width].freeze
+                          :placement_targets, :positive_segments, :segments,
+                          :site, :status, :statuses, :target_max, :target_min,
+                          :type, :types, :width].freeze
 
       def add_demographic_target(params)
         call_api(:get, __method__, sanitize_params(params))

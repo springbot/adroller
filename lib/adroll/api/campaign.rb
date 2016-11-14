@@ -4,7 +4,8 @@ module AdRoll
       WHITELIST_PARAMS = [:adgroups, :ads, :advertisable, :budget, :campaign,
                           :cpc, :cpm, :end_date, :is_facebook, :is_fb_wca,
                           :is_fbx_newsfeed, :is_retargeting, :max_cpm, :name,
-                          :networks, :objective, :start_date, :status].freeze
+                          :networks, :objective, :start_date, :status,
+                          :ui_budget_daily].freeze
 
       def create(params)
         call_api(:post, __method__, sanitize_params(params))

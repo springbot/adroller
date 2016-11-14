@@ -10,6 +10,10 @@ module AdRoll
         call_api(:put, __method__, sanitize_params(params))
       end
 
+      def get(params)
+        call_api(:get, __method__, sanitize_params(params))
+      end
+
       private
 
       def sanitize_params(params)

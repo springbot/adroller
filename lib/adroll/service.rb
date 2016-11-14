@@ -81,7 +81,7 @@ module AdRoll
 
     def perform_post(request_method, request_uri, query_params)
       # Unfortunately, HTTParty applies query_string_normalizer to `body`
-        # as well, so revert back to vanilla HTTParty for other requests.
+      # as well, so revert back to vanilla HTTParty for other requests.
       HTTParty.send(request_method,
                     request_uri,
                     basic_auth: basic_auth,
