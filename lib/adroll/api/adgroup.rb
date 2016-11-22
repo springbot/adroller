@@ -42,7 +42,7 @@ module AdRoll
       end
 
       def create(params)
-        call_api(:get, __method__, sanitize_params(params))
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       def deselect_ads(params)
@@ -50,7 +50,7 @@ module AdRoll
       end
 
       def edit(params)
-        call_api(:get, __method__, sanitize_params(params))
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       def exclude_site(params)

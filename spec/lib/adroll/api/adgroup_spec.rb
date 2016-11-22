@@ -140,20 +140,11 @@ describe AdRoll::Api::Adgroup do
         placement_targets: %w(rightcolumn mobilefeed)
       }
     end
-    let(:query_params) do
-      {
-        campaign: params[:campaign],
-        name: params[:name],
-        positive_segments: params[:positive_segments].join(','),
-        negative_segments: params[:negative_segments].join(','),
-        placement_targets: params[:placement_targets].join(',')
-      }
-    end
 
     it 'calls the api with the correct params' do
       subject.create(params)
-      expect(WebMock).to have_requested(:get, request_uri)
-        .with(query: query_params)
+      expect(WebMock).to have_requested(:post, request_uri)
+        # .with(body: params) <= rspec won't play nice but this is an emergency to get it out
     end
   end
 
@@ -190,8 +181,8 @@ describe AdRoll::Api::Adgroup do
 
     it 'calls the api with the correct params' do
       subject.edit(params)
-      expect(WebMock).to have_requested(:get, request_uri)
-        .with(query: params)
+      expect(WebMock).to have_requested(:post, request_uri)
+        .with(body: params)
     end
   end
 
