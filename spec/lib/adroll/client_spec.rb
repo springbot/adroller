@@ -5,7 +5,8 @@ describe AdRoll::Client do
     context 'when data_source is not specified or is api' do
       client = AdRoll::Client.new user_name: 'USERNAME',
                                   password: 'PASSWORD',
-                                  organization_eid: 'ORG123XYZ'
+                                  organization_eid: 'ORG123XYZ',
+                                  api_key: 'API123XYZ'
 
       # classes = [AdRoll::Api::MobileApp]
       classes = AdRoll.api_service_classes
@@ -42,7 +43,8 @@ describe AdRoll::Client do
         {
           user_name: 'foo',
           password: 'bar',
-          organization_eid: 'spam'
+          organization_eid: 'spam',
+          api_key: 'key'
         }
       end
       before do
@@ -61,6 +63,7 @@ describe AdRoll::Client do
       client = AdRoll::Client.new user_name: 'USERNAME',
                                   password: 'PASSWORD',
                                   organization_eid: 'ORG123XYZ',
+                                  api_key: 'API123XYZ',
                                   data_source: 'uhura'
 
       # classes = [AdRoll::Uhura::Attributions]
@@ -104,7 +107,8 @@ describe AdRoll::Client do
           data_source: 'uhura',
           user_name: 'foo',
           password: 'bar',
-          organization_eid: 'spam'
+          organization_eid: 'spam',
+          api_key: 'key'
         }
       end
       before do

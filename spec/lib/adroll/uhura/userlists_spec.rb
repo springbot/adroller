@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AdRoll::Uhura::Userlists do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
-  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/userlists' }
+  let!(:base_uri) { 'https://services.adroll.com/uhura/v1/userlists' }
 
   subject { described_class }
 

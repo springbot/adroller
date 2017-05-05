@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::RollcrawlConfiguration do
-  let!(:base_uri) { 'https://api.adroll.com/v1/rollcrawl_configuration' }
+  let!(:base_uri) { 'https://services.adroll.com/api/v1/rollcrawl_configuration' }
 
   subject { described_class }
 

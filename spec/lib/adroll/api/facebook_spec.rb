@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Facebook do
-  let!(:base_uri) { 'https://api.adroll.com/facebook' }
+  let!(:base_uri) { 'https://services.adroll.com/facebook' }
 
   subject { described_class }
 

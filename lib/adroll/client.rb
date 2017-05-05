@@ -1,12 +1,13 @@
 module AdRoll
   class Client
-    attr_accessor :user_name, :password, :organization_eid, :debug
+    attr_accessor :user_name, :password, :organization_eid, :api_key, :debug
 
-    def initialize(user_name:, password:, organization_eid:,
+    def initialize(user_name:, password:, organization_eid:, api_key:,
                    data_source: 'api', debug: false)
       @user_name = user_name
       @password = password
       @organization_eid = organization_eid
+      @api_key = api_key
       @debug = debug
       @data_source = data_source
     end
