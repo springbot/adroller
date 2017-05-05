@@ -29,9 +29,9 @@ General Info
 
 API version: v1
 
-API base url: https://api.adroll.com/v1/
+API base url: https://services.adroll.com/api/v1/
 
-API documentation: https://app.adroll.com/api/v1/docs
+API documentation: https://developers.adroll.com/docs/
 
 Setup
 =====
@@ -42,6 +42,7 @@ Set your API username, password and organization eid in your environment
 ENV['ADROLL_USERNAME'] = 'Your User Name'
 ENV['ADROLL_PASSWORD'] = 'Your Password'
 ENV['ADROLL_ORGANIZATION'] = 'Your Organization eid'
+ENV['ADROLL_API_KEY'] = 'Your Developer App apikey'
 ```
 
 Method Calls

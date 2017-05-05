@@ -32,11 +32,11 @@ require 'adroll/httparty_wrapper'
 
 module AdRoll
   def self.api_base_url
-    'https://api.adroll.com/v1'
+    'https://services.adroll.com/api/v1'
   end
 
   def self.uhura_base_url
-    'https://app.adroll.com/uhura/v1'
+    'https://services.adroll.com/uhura/v1'
   end
 
   def self.user_name
@@ -51,14 +51,19 @@ module AdRoll
     ENV['DEBUG'] == 'true'
   end
 
+  def self.api_key
+    @api_key || ENV['ADROLL_API_KEY']
+  end
+
   def self.organization_eid
     @organization_eid || ENV['ADROLL_ORGANIZATION_EID']
   end
 
-  def self.set_account_data(user_name, password, organization_eid)
+  def self.set_account_data(user_name, password, organization_eid, api_key)
     @user_name = user_name
     @password = password
     @organization_eid = organization_eid
+    @api_key = api_key
   end
 
   def self.uhura_services
@@ -86,8 +91,8 @@ module AdRoll
   def self.included(base)
     base.class_eval do
       class << self
-        def set_account_data(user_name:, password:, organization_eid:)
-          AdRoll.set_account_data(user_name, password, organization_eid)
+        def set_account_data(user_name:, password:, organization_eid:, api_key:)
+          AdRoll.set_account_data(user_name, password, organization_eid, api_key)
         end
       end
     end

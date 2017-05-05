@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::User do
-  let!(:base_uri) { 'https://api.adroll.com/v1/user' }
+  let!(:base_uri) { 'https://services.adroll.com/api/v1/user' }
 
   subject { described_class }
 

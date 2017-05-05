@@ -37,6 +37,10 @@ describe AdRoll do
     it 'sets organization_eid' do
       expect(AdRoll.organization_eid).to eq('ORG123XYZ')
     end
+
+    it 'sets api_key' do
+      expect(AdRoll.api_key).to eq('API123XYZ')
+    end
   end
 
   context 'when using include' do
@@ -49,7 +53,8 @@ describe AdRoll do
     before do
       subject.set_account_data(user_name: 'username',
                                password: 'abc',
-                               organization_eid: 'abc123')
+                               organization_eid: 'abc123',
+                               api_key: 'api123')
     end
 
     it 'sets user_name' do
@@ -62,6 +67,10 @@ describe AdRoll do
 
     it 'sets organization_eid' do
       expect(AdRoll.organization_eid).to eq('abc123')
+    end
+
+    it 'sets api_key' do
+      expect(AdRoll.api_key).to eq('api123')
     end
   end
 end

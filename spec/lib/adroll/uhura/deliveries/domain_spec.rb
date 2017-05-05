@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AdRoll::Uhura::Deliveries::Domain do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
-  let!(:base_uri) { 'https://app.adroll.com/uhura/v1/deliveries/domain' }
+  let!(:base_uri) { 'https://services.adroll.com/uhura/v1/deliveries/domain' }
 
   subject { described_class }
 

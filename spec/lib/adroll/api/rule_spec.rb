@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Rule do
-  let!(:base_uri) { 'https://api.adroll.com/v1/rule' }
+  let!(:base_uri) { 'https://services.adroll.com/api/v1/rule' }
 
   subject { described_class }
 
