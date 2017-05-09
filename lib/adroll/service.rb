@@ -52,9 +52,12 @@ module AdRoll
     end
 
     def make_api_call(request_method, request_uri, query_params)
+      # Include api_key with every call.
+      query_params['apikey'] = AdRoll.api_key
+
       if request_method == :get
         perform_get(request_method, request_uri, query_params)
-      elsif request_uri == 'https://api.adroll.com/v1/ad/create'
+      elsif request_uri == 'https://services.adroll.com/api/v1/ad/create'
         perform_multi_post(request_method, request_uri, query_params)
       else
         perform_post(request_method, request_uri, query_params)

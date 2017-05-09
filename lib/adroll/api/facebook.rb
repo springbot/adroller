@@ -16,7 +16,7 @@ module AdRoll
       private
 
       def service_url
-        'https://api.adroll.com/facebook'
+        'https://services.adroll.com/facebook'
       end
 
       def sanitize_params(params)

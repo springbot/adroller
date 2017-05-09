@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AdRoll::Api::Pixel do
-  let!(:base_uri) { 'https://api.adroll.com/v1/pixel' }
+  let!(:base_uri) { 'https://services.adroll.com/api/v1/pixel' }
 
   subject { described_class }
 
