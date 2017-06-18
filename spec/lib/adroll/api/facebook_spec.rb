@@ -5,6 +5,10 @@ describe AdRoll::Api::Facebook do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::fb_page_url' do
     let(:request_uri) { "#{base_uri}/fb_page_url" }
     let(:params) do

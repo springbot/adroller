@@ -6,6 +6,10 @@ describe AdRoll::Uhura::SegmentDeliveries do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::advertisable' do
     let!(:request_uri) { "#{base_uri}/advertisable" }
     let!(:params) do

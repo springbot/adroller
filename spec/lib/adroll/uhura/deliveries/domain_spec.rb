@@ -6,6 +6,10 @@ describe AdRoll::Uhura::Deliveries::Domain do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::ad' do
     let!(:request_uri) { "#{base_uri}/ad" }
     let!(:params) do

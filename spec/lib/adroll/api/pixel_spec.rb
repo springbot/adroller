@@ -5,6 +5,10 @@ describe AdRoll::Api::Pixel do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::get' do
     let(:request_uri) { "#{base_uri}/get" }
     let(:params) do

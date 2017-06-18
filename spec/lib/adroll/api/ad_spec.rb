@@ -6,6 +6,10 @@ describe AdRoll::Api::Ad do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::clone' do
     let!(:request_uri) { "#{base_uri}/clone" }
 
