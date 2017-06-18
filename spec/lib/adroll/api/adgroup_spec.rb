@@ -6,6 +6,10 @@ describe AdRoll::Api::Adgroup do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::add_demographic_target' do
     let(:request_uri) { "#{base_uri}/add_demographic_target" }
     let(:params) do
@@ -144,7 +148,7 @@ describe AdRoll::Api::Adgroup do
     it 'calls the api with the correct params' do
       subject.create(params)
       expect(WebMock).to have_requested(:post, request_uri)
-        # .with(body: params) <= rspec won't play nice but this is an emergency to get it out
+      # .with(body: params) <= rspec won't play nice but this is an emergency to get it out
     end
   end
 

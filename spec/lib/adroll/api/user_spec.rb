@@ -5,6 +5,10 @@ describe AdRoll::Api::User do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::deactivate' do
     let(:request_uri) { "#{base_uri}/deactivate" }
     let(:params) do

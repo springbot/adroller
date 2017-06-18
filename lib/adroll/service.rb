@@ -53,7 +53,7 @@ module AdRoll
 
     def make_api_call(request_method, request_uri, query_params)
       # Include api_key with every call.
-      query_params['apikey'] = AdRoll.api_key
+      request_uri << "?apikey=#{AdRoll.api_key}"
 
       if request_method == :get
         perform_get(request_method, request_uri, query_params)

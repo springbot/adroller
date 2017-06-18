@@ -5,6 +5,10 @@ describe AdRoll::Api::Segment do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::edit' do
     let(:request_uri) { "#{base_uri}/edit" }
     let(:params) do

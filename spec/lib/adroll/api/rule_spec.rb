@@ -5,6 +5,10 @@ describe AdRoll::Api::Rule do
 
   subject { described_class }
 
+  before(:each) do
+    request_uri << "?apikey=#{AdRoll.api_key}"
+  end
+
   describe '::create' do
     let(:request_uri) { "#{base_uri}/create" }
     let(:params) do
