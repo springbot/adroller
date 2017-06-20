@@ -57,7 +57,7 @@ module AdRoll
 
       if request_method == :get
         perform_get(request_method, request_uri, query_params)
-      elsif request_uri == 'https://services.adroll.com/api/v1/ad/create'
+      elsif request_uri.include?('/ad/create')
         perform_multi_post(request_method, request_uri, query_params)
       else
         perform_post(request_method, request_uri, query_params)
