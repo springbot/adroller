@@ -75,6 +75,18 @@ describe AdRoll::Api::Ad do
     end
   end
 
+  describe '::create_templated_web_ads' do
+    let!(:request_uri) { "#{base_uri}/create_templated_web_ads" }
+    let!(:params) do
+      { ad: 'AD123' }
+    end
+
+    it 'calls the api with the correct params' do
+      subject.create_templated_web_ads(ad: 'AD123')
+      expect(WebMock).to have_requested(:post, request_uri).with(body: params)
+    end
+  end
+
   describe '::set_outline' do
     let!(:request_uri) { "#{base_uri}/set_outline" }
     let!(:params) do
