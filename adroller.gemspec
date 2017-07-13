@@ -6,8 +6,8 @@ require 'adroller/version'
 Gem::Specification.new do |spec|
   spec.name = 'adroller'
   spec.version = Adroller::VERSION
-  spec.authors = ['Nikolas Davis', 'Dustin Goodman']
-  spec.email = ['nikolasliamdavis@gmail.com', 'dustin.s.goodman@gmail.com']
+  spec.authors = ['Nikolas Davis', 'Dustin Goodman', 'Chris Oh']
+  spec.email = ['nikolasliamdavis@gmail.com', 'dustin.s.goodman@gmail.com', 'seokkyu125@gmail.com']
   spec.summary = 'Ruby API Wrapper for AdRoll'
   spec.description = 'Ruby Gem for Interaction with AdRoll v1 API'
   spec.homepage = 'http://www.adroll.com'
