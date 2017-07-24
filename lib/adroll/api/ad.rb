@@ -6,11 +6,12 @@ module AdRoll
       WHITELIST_PARAMS = [:ad, :ad_format, :advertisable, :app_id, :background,
                           :body, :body_dynamic, :call_to_action, :child_ads,
                           :destination_url, :display_url_override,
-                          :dynamic_template_id, :file, :headline,
-                          :headline_dynamic, :is_fb_dynamic, :lead_gen_form_id,
-                          :logo, :message, :message_dynamic,
+                          :dynamic_template_id, :dynamic_template_name,
+                          :file, :headline, :headline_dynamic, :is_fb_dynamic,
+                          :lead_gen_form_id, :logo, :message, :message_dynamic,
                           :multi_share_optimized, :multiple_products, :name,
-                          :prefix, :product, :tracking, :type].freeze
+                          :prefix, :product, :text_cta, :text_promo,
+                          :theme_color, :tracking, :type].freeze
 
       def clone(params)
         call_api(:post, __method__, sanitize_params(params))
@@ -26,6 +27,10 @@ module AdRoll
 
       def get(params)
         call_api(:get, __method__, sanitize_params(params))
+      end
+
+      def create_templated_web_ads(params)
+        call_api(:post, __method__, sanitize_params(params))
       end
 
       # undocumented
