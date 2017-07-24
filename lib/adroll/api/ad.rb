@@ -11,7 +11,7 @@ module AdRoll
                           :lead_gen_form_id, :logo, :message, :message_dynamic,
                           :multi_share_optimized, :multiple_products, :name,
                           :prefix, :product, :text_cta, :text_promo,
-                          :theme_color, :tracking, :type].freeze
+                          :theme_color, :tracking, :type, :sale_price_option].freeze
 
       def clone(params)
         call_api(:post, __method__, sanitize_params(params))
