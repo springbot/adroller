@@ -21,6 +21,7 @@ require 'adroll/api/rollcrawl_configuration'
 require 'adroll/api/rule'
 require 'adroll/api/segment'
 require 'adroll/api/user'
+require 'adroll/api/product'
 
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
