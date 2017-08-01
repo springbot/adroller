@@ -10,7 +10,7 @@ describe AdRoll::Api::Product do
   end
 
   describe '::recommendations_preview' do
-    let!(:request_uri) { "#{base_uri}/get" }
+    let!(:request_uri) { "#{base_uri}/recommendations_preview" }
 
     let!(:params) do
       {
@@ -20,7 +20,7 @@ describe AdRoll::Api::Product do
 
     it 'calls the api with the correct params' do
       subject.recommendations_preview(advertisable_eid: 'abc123')
-      expect(WebMock).to have_requested(:recommendations_preview, request_uri).with(query: params)
+      expect(WebMock).to have_requested(:get, request_uri).with(query: params)
     end
   end
 end
