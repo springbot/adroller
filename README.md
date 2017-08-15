@@ -56,6 +56,13 @@ A method call will return a JSON response directly from the api
 AdRoll::Api::{Endpoint Name}.{Endpoint Method}({Endpoint Parameters})
 ```
 
+When authenticating Facebook, there is an optional parameter you can pass in for the HTTP request method
+``` ruby
+AdRoll::Api::Facebook.fb_page_url(params, method = :get)
+```
+The default method is get method, and it expects the request method as symbol name e.g. :post, :get.
+Pass in :post when authenticating for first time, and :get once the Facebook page is authenticated
+
 Example
 =========
 

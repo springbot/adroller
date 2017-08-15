@@ -18,10 +18,20 @@ describe AdRoll::Api::Facebook do
       }
     end
 
-    it 'calls the api with the correct params' do
-      subject.fb_page_url(params)
-      expect(WebMock).to have_requested(:post, request_uri)
-        .with(body: params)
+    context 'when it is a POST request' do
+      it 'calls the api with the correct params' do
+        subject.fb_page_url(params, :post)
+        expect(WebMock).to have_requested(:post, request_uri)
+          .with(body: params)
+      end
+    end
+
+    context 'when it is a GET request' do
+      it 'calls the api with the correct params' do
+        subject.fb_page_url(params, :get)
+        expect(WebMock).to have_requested(:get, request_uri)
+          .with(query: params)
+      end
     end
   end
 
