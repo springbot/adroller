@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'pry-byebug', '~> 3.4', '>= 3.4.0'
   spec.add_development_dependency 'rspec', '~> 3.0', '>= 3.0.0'
-  spec.add_development_dependency 'webmock', '~> 2.1'
+  spec.add_development_dependency 'webmock', '~> 2.3.2'
   spec.add_development_dependency 'factory_girl', '~> 4.4', '>= 4.4.0'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rspec'
