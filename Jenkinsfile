@@ -25,6 +25,7 @@ pipeline {
             }
             steps {
                 sh "bundle exec rspec"
+                sh 'printenv'
                 script {
                     try {
                         junit 'reports/*.xml'
