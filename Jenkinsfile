@@ -24,9 +24,14 @@ pipeline {
 
         stage("Rspec") {
             steps {
-                sh "bundle exec rspec"  
-                sh "ls"
-                sh "cd spec/reports/ && ls"
+                script {
+                    try {
+                        sh "bundle exec rspec"  
+                    } catch(e) {
+                        sh "ls"
+                        sh "cd spec/reports/ && ls"
+                    }
+                }
             }
         }
     }
