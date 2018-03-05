@@ -21,24 +21,16 @@ pipeline {
                 sh 'bundle exec rubocop'
             }
         }
-
         stage("Rspec") {
             steps {
-                script {
-                    try {
-                        sh "bundle exec rspec"  
-                    } catch(e) {
-                        sh "ls"
-                        sh "cd spec/reports/ && ls"
-                    }
-                }
+                sh "bundle exec rspec"
             }
         }
     }
 
     post { 
         always {
-            junit './spec/reports/rspec.xml'
+            junit "spec/reports/rspec.xml"
             echo 'Sending build status to slack.'
         }
 
