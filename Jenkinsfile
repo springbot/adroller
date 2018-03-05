@@ -2,6 +2,10 @@
 @Library('sb-shared@master') _
 pipeline {
 
+    environment {
+        CODECOV_TOKEN = credentials('codecov_adroller')
+        TESTING = "TEST"
+    }
     agent { node { label 'www-fleet' } }
     options { buildDiscarder(logRotator(numToKeepStr: '10')) }
 
@@ -20,9 +24,6 @@ pipeline {
         }
 
         stage("Rspec") {
-            environment {
-                CODECOV_TOKEN = credentials('codecov_adroller')
-            }
             steps {
                 sh "bundle exec rspec"
                 sh 'printenv'
