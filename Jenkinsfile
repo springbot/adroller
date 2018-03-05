@@ -24,19 +24,14 @@ pipeline {
 
         stage("Rspec") {
             steps {
-                script {
-                    try {
-                        sh "bundle exec rspec"                        
-                        junit './spec/reports/rspec.xml'
-                    } catch (e) {
-                        println "No Errors found."
-                    }
-                }
+                sh "bundle exec rspec"  
             }
         }
     }
+
     post { 
         always {
+            junit './spec/reports/rspec.xml'
             echo 'Sending build status to slack.'
         }
 
