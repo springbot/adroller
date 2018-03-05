@@ -20,9 +20,12 @@ pipeline {
         }
 
         stage("Rspec") {
+            environment {
+                CODECOV_TOKEN = credentials('codecov_adroller')
+            }
             steps {
                 script {
-                    sh 'bundle exec rspec'
+                    sh "bundle exec rspec"
                     try {
                         junit 'reports/*.xml'
                     } catch (e) {
