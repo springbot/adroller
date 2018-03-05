@@ -22,7 +22,7 @@ pipeline {
         stage("Rspec") {
             steps {
                 script {
-                    sh 'bundle exec rake rspec'
+                    sh 'bundle exec rspec'
                     try {
                         junit 'reports/*.xml'
                     } catch (e) {
