@@ -4,7 +4,6 @@ pipeline {
 
     environment {
         CODECOV_TOKEN = credentials('codecov_adroller')
-        TESTING = "TEST"
     }
     agent { node { label 'www-fleet' } }
     options { buildDiscarder(logRotator(numToKeepStr: '10')) }
@@ -26,7 +25,6 @@ pipeline {
         stage("Rspec") {
             steps {
                 sh "bundle exec rspec"
-                sh 'printenv'
                 script {
                     try {
                         junit 'reports/*.xml'
