@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script {
                     try {
-                    sh "bundle exec rspec"                        
-                        junit 'reports/*.xml'
+                        sh "bundle exec rspec"                        
+                        junit 'reports.xml'
                     } catch (e) {
                         println "No Errors found."
                     }
