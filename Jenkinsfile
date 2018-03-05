@@ -15,7 +15,7 @@ pipeline {
         }
         stage("Rubocop") {
             steps {
-                sh 'bundle exec rubocop lib/**/*.rb'
+                sh 'bundle exec rubocop'
             }
         }
 
@@ -24,8 +24,8 @@ pipeline {
                 CODECOV_TOKEN = credentials('codecov_adroller')
             }
             steps {
+                sh "bundle exec rspec"
                 script {
-                    sh "bundle exec rspec"
                     try {
                         junit 'reports/*.xml'
                     } catch (e) {
