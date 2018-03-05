@@ -17,7 +17,6 @@ pipeline {
         stage("Download Deps") {
             steps {
                 sh 'bower install'
-                )
             }
         }
 
