@@ -32,9 +32,6 @@ GEM
       activesupport (>= 3.0.0)
     ffi (1.9.10)
     formatador (0.2.5)
-    fuubar (2.3.1)
-      rspec-core (~> 3.0)
-      ruby-progressbar (~> 1.4)
     guard (2.14.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -138,7 +135,6 @@ DEPENDENCIES
   bundler (~> 1.7)
   codecov
   factory_girl (~> 4.4, >= 4.4.0)
-  fuubar
   guard
   guard-rspec
   pry-byebug (~> 3.4, >= 3.4.0)
