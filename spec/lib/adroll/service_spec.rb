@@ -7,7 +7,7 @@ describe AdRoll::Api::Service do
         'https://services.adroll.com/api/v1/ad/create'
       end
 
-      subject{described_class.new}
+      subject { described_class.new }
 
       it 'uses HTTMultiParty to make the request' do
         expect(subject).to receive(:perform_multi_post)
