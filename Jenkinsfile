@@ -15,14 +15,7 @@ pipeline {
         }
         stage("Rubocop") {
             steps {
-                parallel(
-                    rubocopApp: {
-                        sh 'bundle exec rubocop lib/**/*.rb'
-                    },
-                    rubocopSpec: {
-                        sh 'bundle exec rubocop spec/**/*.rb'                    
-                    }
-                )                
+                sh 'bundle exec rubocop lib/**/*.rb'
             }
         }
 
