@@ -13,13 +13,6 @@ pipeline {
                 sh 'bundle install'
             }
         }
-
-        stage("Download Deps") {
-            steps {
-                sh 'bower install'
-            }
-        }
-
         stage("Rubocop") {
             steps {
                 parallel(
