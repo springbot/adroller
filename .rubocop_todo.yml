@@ -22,4 +22,4 @@ Metrics/ParameterLists:
   Max: 6
 
 Metrics/BlockLength:
-  Max: 27
+  Max: 30
