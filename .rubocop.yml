@@ -1,7 +1,1 @@
 inherit_from: .rubocop_todo.yml
-Metrics/LineLength:
-  Max: 100
-Metrics/ParameterLists:
-  Max: 6
-Metrics/BlockLength:
-  Max: 26

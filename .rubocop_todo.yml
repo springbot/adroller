@@ -14,3 +14,12 @@ Style/AccessorMethodName:
 
 Style/MethodMissing:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/ParameterLists:
+  Max: 6
+
+Metrics/BlockLength:
+  Max: 26
