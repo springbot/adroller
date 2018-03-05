@@ -25,6 +25,8 @@ pipeline {
         stage("Rspec") {
             steps {
                 sh "bundle exec rspec"  
+                sh "ls"
+                sh "cd spec/reports/ && ls"
             }
         }
     }
