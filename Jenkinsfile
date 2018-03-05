@@ -40,7 +40,7 @@ pipeline {
                     try {
                         junit 'reports/*.xml'
                     } catch (e) {
-                        println "No Errors found"
+                        println "No Errors found."
                     }
                 }
             }
