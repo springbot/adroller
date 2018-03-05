@@ -24,9 +24,9 @@ pipeline {
 
         stage("Rspec") {
             steps {
-                sh "bundle exec rspec"
                 script {
                     try {
+                    sh "bundle exec rspec"                        
                         junit 'reports/*.xml'
                     } catch (e) {
                         println "No Errors found."

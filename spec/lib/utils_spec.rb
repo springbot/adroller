@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AdRoll::Utils do
   describe '.snakecase' do
-    subject(:sc) { described_class.snakecase 'SnakeCase' }
+    subject(:sc) {described_class.snakecase 'SnakeCase'}
     it { is_expected.to eq 'snake_cae' }
 
     context 'when it does not recieve a string' do
