@@ -1,4 +1,2 @@
---color
 --format RspecJunitFormatter
---format Fuubar
 --out spec/reports/rspec.xml
