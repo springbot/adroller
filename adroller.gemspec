@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'codecov'
   spec.add_development_dependency 'ruby_dep', '~> 1.3.1'
 
-  spec.add_dependency 'httparty', '~> 0.13.1'
-  spec.add_dependency 'httmultiparty', '~> 0.3.13'
+  spec.add_dependency 'httparty', '~> 0.16.2'
+  spec.add_dependency 'httmultiparty', '~> 0.3.16'
   spec.add_dependency 'activesupport', '>= 3.2'
 end
