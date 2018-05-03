@@ -7,7 +7,7 @@ module AdRoll
                           :filter_active, :height, :is_active, :name,
                           :organization, :path_name, :product_name,
                           :set_as_default, :statuses, :types, :url,
-                          :view_through_conversion_window, :width].freeze
+                          :view_through_conversion_window, :width, :country_code].freeze
 
       def create(params)
         call_api(:post, __method__, sanitize_params(params))
