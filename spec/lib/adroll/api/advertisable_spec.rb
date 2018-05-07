@@ -46,9 +46,7 @@ describe AdRoll::Api::Advertisable do
         url: 'https://url.com',
         product_name: 'product_name',
         view_through_conversion_window: '30',
-        country_code: 'US',
-        is_twitter_syncing: false,
-        twitter_handle: nil
+        country_code: 'US'
       }
     end
 
