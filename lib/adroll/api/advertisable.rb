@@ -15,7 +15,7 @@ module AdRoll
       end
 
       def edit(params)
-        call_api(:get, __method__, sanitize_params(params))
+        call_api(:put, __method__, sanitize_params(params))
       end
 
       def enable_rollcrawl(params)
