@@ -42,16 +42,25 @@ describe AdRoll::Api::Advertisable do
     let!(:params) do
       {
         advertisable: 'xyz456',
+        name: 'advertisable test',
+        url: 'https://url.com',
+        product_name: 'product_name',
+        view_through_conversion_window: '30',
         country_code: 'US',
         is_twitter_syncing: false,
         twitter_handle: ''
       }
     end
 
+    let!(:escaped_params) do
+      params[:url] = CGI.escape(params[:url])
+      params
+    end
+
     it 'calls the api with the correct params' do
       subject.edit(params)
       expect(WebMock).to have_requested(:post, request_uri)
-        .with(body: params)
+        .with(body: escaped_params)
     end
   end
 
