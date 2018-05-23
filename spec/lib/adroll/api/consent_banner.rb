@@ -10,6 +10,21 @@ describe AdRoll::Api::ConsentBanner do
   end
 
   describe '::get' do
+    let(:request_uri) { "#{base_uri}/get" }
+    let(:params) do
+      {
+        advertisable: 'abc123'
+      }
+    end
+
+    it 'calls the api with the correct params' do
+      subject.update(params)
+      expect(WebMock).to have_requested(:get, request_uri)
+        .with(query: params)
+    end
+  end
+
+  describe '::update' do
     let(:request_uri) { "#{base_uri}/update" }
     let(:params) do
       {

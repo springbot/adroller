@@ -5,6 +5,10 @@ module AdRoll
     class ConsentBanner < AdRoll::Api::Service
       WHITELIST_PARAMS = [:advertisable, :state].freeze
 
+      def get
+        call_api(:get, __method__, sanitize_params(params))
+      end
+
       def update
         call_api(:post, __method__, sanitize_params(params))
       end
