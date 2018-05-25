@@ -63,6 +63,9 @@ AdRoll::Api::Facebook.fb_page_url(params, method = :get)
 The default method is get method, and it expects the request method as symbol name e.g. :post, :get.
 Pass in :post when authenticating for first time, and :get once the Facebook page is authenticated
 
+** If any other endpoints have multiple HTTP request methods, you need to pass in additional method params
+as symbol to call the method you want.
+
 Example
 =========
 
