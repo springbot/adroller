@@ -43,8 +43,14 @@ module AdRoll
       $stdout if (client && client.debug?) || AdRoll.debug?
     end
 
-    def call_api(request_method, endpoint, query_params)
+    # Pass in addtional_query_params if you need query parameters on url for 
+    # HTTP requests that require you to pass in form body
+    def call_api(request_method, endpoint, query_params, additional_query_params = nil)
       request_uri = File.join(service_url, endpoint.to_s)
+      if additional_query_params.present?
+        uri = URI.parse(request_uri)
+        
+      end
       response = make_api_call(request_method, request_uri, query_params)
       JSON.parse(response.body)
     rescue JSON::ParserError

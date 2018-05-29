@@ -16,32 +16,34 @@ describe AdRoll::Api::UniversalCampaigns do
     context 'on GET request' do
       let(:params) do
         {
+          eid: 'RANDOMENTITYID',
+          campaign_eid: 'CAMPAIGNRANDOMEID'
+        }
+      end
+
+      it 'calls the API with correct params' do
+        subject.adgroup(params, :get)
+        expect(WebMock).to have_requested(:get, request_uri)
+          .with(query: params)
+      end
+    end
+
+    context 'on POST request' do
+      let(:params) do
+        {
           
         }
       end
 
-      subject.adgroup(params, :get)
-    end
-
-    context 'on POST request' do
-      subject.adgroup(params, :post)
+      it 'calls the API with correct params' do
+        subject.adgroup(params, :post)
+      end
     end
 
     context 'on PUT request' do
-      subject.adgroup(params, :put)
-    end
-
-    let!(:params) do
-      {
-        name: 'name',
-        headline: 'headline',
-        body: 'body'
-      }
-    end
-
-    it 'calls the api with the correct params' do
-      subject.clone(name: 'name', headline: 'headline', body: 'body')
-      expect(WebMock).to have_requested(:post, request_uri).with(body: params)
+      it 'calls the API with correct params' do
+        subject.adgroup(params, :put)
+      end
     end
   end
 end

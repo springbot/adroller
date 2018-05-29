@@ -1,6 +1,7 @@
 require 'httparty'
 require 'httmultiparty'
 require 'active_support/core_ext/string'
+require 'uri'
 
 require 'adroll/client'
 require 'adroll/service'
@@ -23,6 +24,7 @@ require 'adroll/api/report'
 require 'adroll/api/rollcrawl_configuration'
 require 'adroll/api/rule'
 require 'adroll/api/segment'
+require 'adroll/api/universal_campaigns'
 require 'adroll/api/user'
 require 'adroll/api/product'
 
