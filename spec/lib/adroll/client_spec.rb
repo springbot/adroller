@@ -11,6 +11,7 @@ describe AdRoll::Client do
       # classes = [AdRoll::Api::MobileApp]
       classes = AdRoll.api_service_classes
       classes.each do |service|
+        next if service == AdRoll::Api::UniversalCampaigns
         service_method = service.service_method
         service.instance_methods(false).each do |method|
           ar = []
@@ -69,6 +70,7 @@ describe AdRoll::Client do
       # classes = [AdRoll::Uhura::Attributions]
       classes = AdRoll.uhura_service_classes
       classes.each do |service|
+        next if service == AdRoll::Api::UniversalCampaigns
         service_method = service.service_method
         service.instance_methods(false).each do |method|
           ar = []
