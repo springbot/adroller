@@ -45,56 +45,63 @@ module AdRoll
 
     # Pass in addtional_query_params if you need query parameters on url for 
     # HTTP requests that require you to pass in form body
-    def call_api(request_method, endpoint, query_params, additional_query_params = nil)
+    def call_api(request_method, endpoint, params, additional_query_params = nil)
       request_uri = File.join(service_url, endpoint.to_s)
-      if additional_query_params.present?
-        uri = URI.parse(request_uri)
-        
-      end
-      response = make_api_call(request_method, request_uri, query_params)
+      response = make_api_call(request_method, request_uri, params, additional_query_params)
       JSON.parse(response.body)
     rescue JSON::ParserError
       { error: 'JSON::ParserError', response: response.body }
     end
 
-    def make_api_call(request_method, request_uri, query_params)
+    def make_api_call(request_method, request_uri, params, additional_query_params = nil)
       # Include api_key with every call.
       request_uri << "?apikey=#{AdRoll.api_key}"
 
       if request_method == :get
-        perform_get(request_method, request_uri, query_params)
+        perform_get(request_method, request_uri, params)
       elsif request_uri.include?('/ad/create?')
-        perform_multi_post(request_method, request_uri, query_params)
+        perform_multi_post(request_method, request_uri, params)
+      elsif additional_query_params.present?
+        perform_post_with_query(request_method, request_uri, params, additional_query_params)
       else
-        perform_post(request_method, request_uri, query_params)
+        perform_post(request_method, request_uri, params)
       end
     end
 
-    def perform_get(request_method, request_uri, query_params)
+    def perform_get(request_method, request_uri, params)
       # For get requests, format the query params as defined by the AdRoll
       # Spec - lists should be ?param=PARAM1,PARAM2
       ::AdRoll::HTTPartyWrapper.send(request_method,
                                      request_uri,
                                      basic_auth: basic_auth,
-                                     query: query_params,
+                                     query: params,
                                      debug_output: debug_output)
     end
 
-    def perform_multi_post(request_method, request_uri, query_params)
+    def perform_multi_post(request_method, request_uri, params)
       HTTMultiParty.send(request_method,
                          request_uri,
                          basic_auth: basic_auth,
-                         body: query_params,
+                         body: params,
                          debug_output: debug_output)
     end
 
-    def perform_post(request_method, request_uri, query_params)
+    def perform_post_with_query(request_method, request_uri, params, additional_query_params)
+      HTTParty.send(request_method,
+                    request_uri,
+                    basic_auth: basic_auth,
+                    query: additional_query_params,
+                    body: params,
+                    debug_output: debug_output)
+    end
+
+    def perform_post(request_method, request_uri, params)
       # Unfortunately, HTTParty applies query_string_normalizer to `body`
       # as well, so revert back to vanilla HTTParty for other requests.
       HTTParty.send(request_method,
                     request_uri,
                     basic_auth: basic_auth,
-                    body: query_params,
+                    body: params,
                     debug_output: debug_output)
     end
   end
