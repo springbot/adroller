@@ -18,7 +18,7 @@ describe AdRoll::Api::ConsentBanner do
     end
 
     it 'calls the api with the correct params' do
-      subject.update(params)
+      subject.get(params)
       expect(WebMock).to have_requested(:get, request_uri)
         .with(query: params)
     end
@@ -36,7 +36,7 @@ describe AdRoll::Api::ConsentBanner do
     it 'calls the api with the correct params' do
       subject.update(params)
       expect(WebMock).to have_requested(:post, request_uri)
-        .with(query: params)
+        .with(body: params)
     end
   end
 end
