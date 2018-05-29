@@ -1,7 +1,6 @@
 require 'httparty'
 require 'httmultiparty'
 require 'active_support/core_ext/string'
-require 'uri'
 
 require 'adroll/client'
 require 'adroll/service'
