@@ -5,17 +5,17 @@ module AdRoll
     class UniversalCampaigns < AdRoll::Api::Service
       ADGROUP_QUERY_PARAMS = [:eid, :campaign_eid].freeze
 
-      ADGROUP_FORM_PARAMS = [:ads, :end_date, :kpi_goal, :ad_type,
+      ADGROUP_JSON_PARAMS = [:ads, :end_date, :kpi_goal, :ad_type,
                              :email, :targeting_features, :kpi_metric,
                              :start_date, :name, :status].freeze
 
       ADGROUP_AD_QUERY_PARAMS = [:adgroup_eid, :ad_eid].freeze
 
-      ADGROUP_AD_FORM_PARAMS = [:eid, :status].freeze
+      ADGROUP_AD_JSON_PARAMS = [:eid, :status].freeze
 
       CAMPAIGN_QUERY_PARAMS = [:advertisable_eid, :eid].freeze
 
-      CAMPAIGN_FORM_PARAMS = [:name, :kpi_goal, :budget, :currency,
+      CAMPAIGN_JSON_PARAMS = [:name, :kpi_goal, :budget, :currency,
                               :adgroups, :kpi_metric, :status].freeze
 
       def adgroup(params, additional_query_params, method = :get)
@@ -25,7 +25,7 @@ module AdRoll
           call_api(
             method,
             __method__,
-            sanitize_params(params, ADGROUP_FORM_PARAMS),
+            sanitize_params(params, ADGROUP_JSON_PARAMS).to_json,
             sanitize_params(additional_query_params, ADGROUP_QUERY_PARAMS)
           )
         end
@@ -35,7 +35,7 @@ module AdRoll
         call_api(
           method,
           __method__,
-          sanitize_params(params, ADGROUP_AD_FORM_PARAMS),
+          sanitize_params(params, ADGROUP_AD_JSON_PARAMS).to_json,
           sanitize_params(additional_query_params, ADGROUP_AD_QUERY_PARAMS)
         )
       end
@@ -47,7 +47,7 @@ module AdRoll
           call_api(
             method,
             __method__,
-            sanitize_params(params, CAMPAIGN_FORM_PARAMS),
+            sanitize_params(params, CAMPAIGN_JSON_PARAMS).to_json,
             sanitize_params(additional_query_params, CAMPAIGN_QUERY_PARAMS)
           )
         end

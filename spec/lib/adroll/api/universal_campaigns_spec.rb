@@ -46,7 +46,7 @@ describe AdRoll::Api::UniversalCampaigns do
       it 'calls the API with correct params' do
         subject.adgroup(form_params, query_params, :post)
         expect(WebMock).to have_requested(:post, request_uri)
-          .with(query: query_params, body: form_params)
+          .with(query: query_params, body: form_params.to_json)
       end
     end
 
@@ -68,7 +68,7 @@ describe AdRoll::Api::UniversalCampaigns do
       it 'calls the API with correct params' do
         subject.adgroup(form_params, query_params, :put)
         expect(WebMock).to have_requested(:put, request_uri)
-          .with(query: query_params, body: form_params)
+          .with(query: query_params, body: form_params.to_json)
       end
     end
   end
@@ -94,7 +94,7 @@ describe AdRoll::Api::UniversalCampaigns do
       it 'calls the API with correct params' do
         subject.adgroup_ad(form_params, query_params, :put)
         expect(WebMock).to have_requested(:put, request_uri)
-          .with(query: query_params, body: form_params)
+          .with(query: query_params, body: form_params.to_json)
       end
     end
   end
@@ -121,9 +121,9 @@ describe AdRoll::Api::UniversalCampaigns do
       let(:form_params) do
         {
           adgroups: [{'ad_type' => 'hihi', 'name' => 'adgroup name'}],
-          budget: 'CPM',
+          budget: 5.0,
           currency: 'paused',
-          kpi_goal: '3.5',
+          kpi_goal: 2.0,
           kpi_metric: 'CPM',
           name: 'BEST CAMPAIGN'
         }
@@ -138,7 +138,7 @@ describe AdRoll::Api::UniversalCampaigns do
       it 'calls the API with correct params' do
         subject.campaign(form_params, query_params, :post)
         expect(WebMock).to have_requested(:post, request_uri)
-          .with(query: query_params, body: form_params)
+          .with(query: query_params, body: form_params.to_json)
       end
     end
 
@@ -161,7 +161,7 @@ describe AdRoll::Api::UniversalCampaigns do
       it 'calls the API with correct params' do
         subject.campaign(form_params, query_params, :put)
         expect(WebMock).to have_requested(:put, request_uri)
-          .with(query: query_params, body: form_params)
+          .with(query: query_params, body: form_params.to_json)
       end
     end
   end
