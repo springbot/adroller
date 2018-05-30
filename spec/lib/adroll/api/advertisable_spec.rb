@@ -18,7 +18,8 @@ describe AdRoll::Api::Advertisable do
         organization: 'abc123',
         set_as_default: true,
         url: 'https://url.com',
-        product_name: 'product_name'
+        product_name: 'product_name',
+        country_code: 'US'
       }
     end
 
@@ -44,7 +45,8 @@ describe AdRoll::Api::Advertisable do
         name: 'advertisable test',
         url: 'https://url.com',
         product_name: 'product_name',
-        view_through_conversion_window: '30'
+        view_through_conversion_window: '30',
+        country_code: 'US'
       }
     end
 
@@ -55,7 +57,7 @@ describe AdRoll::Api::Advertisable do
 
     it 'calls the api with the correct params' do
       subject.edit(params)
-      expect(WebMock).to have_requested(:put, request_uri)
+      expect(WebMock).to have_requested(:post, request_uri)
         .with(body: escaped_params)
     end
   end

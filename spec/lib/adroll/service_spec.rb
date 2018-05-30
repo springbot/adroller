@@ -2,16 +2,27 @@ require 'spec_helper'
 
 describe AdRoll::Api::Service do
   describe ' make_api_call' do
+    subject { described_class.new }
+
     context 'when request is for ad create' do
       let(:request_uri) do
         'https://services.adroll.com/api/v1/ad/create'
       end
 
-      subject { described_class.new }
-
       it 'uses HTTMultiParty to make the request' do
         expect(subject).to receive(:perform_multi_post)
         subject.send(:make_api_call, :post, request_uri, {})
+      end
+    end
+
+    context 'when additional query param is provided on non GET request' do
+      let(:request_uri) do
+        'https://services.adroll.com/activate/api/v2'
+      end
+
+      it 'HTTP request with query parameters' do
+        expect(subject).to receive(:perform_post_with_query)
+        subject.send(:make_api_call, :post, request_uri, {}, {'some' => 'stuff'})
       end
     end
   end

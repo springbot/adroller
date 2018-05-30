@@ -63,6 +63,20 @@ AdRoll::Api::Facebook.fb_page_url(params, method = :get)
 The default method is get method, and it expects the request method as symbol name e.g. :post, :get.
 Pass in :post when authenticating for first time, and :get once the Facebook page is authenticated
 
+
+For Universal Campaigns, there are POST/PUT requests that have query strings as well as JSON data.
+For HTTP Requests that have JSON data as well as query paramters, pass in the JSON data as the first argument,
+and the query parameters second, then finally the HTTP Request method as symbol.
+
+Here are some example to show how to call the universal campaigns endpoints
+``` ruby
+# GET Request for AdGroup
+AdRoll::Api::UniversalCampaigns.adgroup(query_params, method = :get)
+
+# POST Request for AdGroup
+AdRoll::Api::UniversalCampaigns.adgroup(json_params, query_params, method = :post)
+```
+
 Example
 =========
 
