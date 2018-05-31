@@ -89,6 +89,7 @@ module AdRoll
     def perform_post_with_query(request_method, request_uri, params, additional_query_params)
       HTTParty.send(request_method,
                     request_uri,
+                    headers: { 'Content-Type' => 'application/json' },
                     basic_auth: basic_auth,
                     query: additional_query_params,
                     body: params,
