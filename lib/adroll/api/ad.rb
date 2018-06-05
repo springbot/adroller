@@ -3,15 +3,15 @@ require 'adroll/service'
 module AdRoll
   module Api
     class Ad < AdRoll::Api::Service
-      WHITELIST_PARAMS = [:ad, :ad_format, :advertisable, :app_id, :background,
-                          :body, :body_dynamic, :call_to_action, :child_ads,
-                          :destination_url, :display_url_override,
-                          :dynamic_template_id, :dynamic_template_name,
-                          :file, :headline, :headline_dynamic, :is_fb_dynamic,
-                          :lead_gen_form_id, :logo, :message, :message_dynamic,
-                          :multi_share_optimized, :multiple_products, :name,
-                          :prefix, :product, :text_cta, :text_promo,
-                          :theme_color, :tracking, :type, :sale_price_option].freeze
+      WHITELIST_PARAMS = [
+        :ad, :ad_format, :advertisable, :app_id, :background, :body, :body_dynamic,
+        :call_to_action, :child_ads, :destination_url, :display_url_override,
+        :dynamic_template_id, :dynamic_template_name, :file, :headline,
+        :headline_dynamic, :is_fb_dynamic, :lead_gen_form_id, :logo, :message,
+        :message_dynamic, :multi_share_optimized, :multiple_products, :name,
+        :prefix, :product, :text_cta, :text_promo, :theme_color, :tracking, :type,
+        :sale_price_option, :include_category, :exclude_category
+      ].freeze
 
       def clone(params)
         call_api(:post, __method__, sanitize_params(params))
