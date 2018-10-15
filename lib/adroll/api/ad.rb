@@ -10,7 +10,7 @@ module AdRoll
         :headline_dynamic, :is_fb_dynamic, :lead_gen_form_id, :logo, :message,
         :message_dynamic, :multi_share_optimized, :multiple_products, :name,
         :prefix, :product, :text_cta, :text_promo, :theme_color, :tracking, :type,
-        :sale_price_option, :include_category, :exclude_category
+        :sale_price_option, :include_category, :exclude_category, :inventory_type
       ].freeze
 
       def clone(params)
@@ -48,3 +48,4 @@ module AdRoll
     end
   end
 end
+2
