@@ -92,3 +92,17 @@ params = {
 advertisable = AdRoll::Api::Advertisable.create(params)
 => {:name => 'My Advertisable' ... }
 ```
+
+
+Release
+=========
+
+To make a new release of the AdRoller gem:
+1. Change the version.rb file to include the new version number
+2. Merge your changes to the gem.
+3. Click releases at the top of this page
+4. Click 'Draft a new release'
+5. Enter the new version number as the 'tag version'
+6. Add information about what changes in this version
+7. Click 'Publish release'
+8. Change adroller gem version in the Gemfile where it is being used
