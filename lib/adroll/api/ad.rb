@@ -11,7 +11,7 @@ module AdRoll
         :message_dynamic, :multi_share_optimized, :multiple_products, :name,
         :prefix, :product, :text_cta, :text_promo, :theme_color, :tracking, :type,
         :sale_price_option, :include_category, :exclude_category, :inventory_type,
-        :brand_name
+        :brand_name, :countdown_end
       ].freeze
 
       def clone(params)

@@ -1,3 +1,3 @@
 module Adroller
-  VERSION = '3.4.0'.freeze
+  VERSION = '3.7.3'.freeze
 end
