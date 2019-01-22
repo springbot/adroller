@@ -62,7 +62,7 @@ module AdRoll
       # end_date is allowed to be nil for adgroups, that is why this exception is here.
       def sanitize_params(params, whitelist_constant)
         params.reject do |key, value|
-          !whitelist_constant.include?(key) || (key == 'end_date' ? true : value.nil?)
+          !whitelist_constant.include?(key) || (key == :end_date ? true : value.nil?)
         end
       end
     end
