@@ -24,14 +24,14 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rspec_junit_formatter'
   spec.add_development_dependency 'webmock', '~> 2.3.2'
-  spec.add_development_dependency 'factory_girl', '~> 4.4'
+  spec.add_development_dependency 'factory_girl', '~> 4.8'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rspec'
-  spec.add_development_dependency 'rubocop', '~> 0.45'
+  spec.add_development_dependency 'rubocop', '~> 0.49'
   spec.add_development_dependency 'codecov'
   spec.add_development_dependency 'ruby_dep', '~> 1.3'
 
   spec.add_dependency 'httparty', '~> 0.15'
   spec.add_dependency 'httmultiparty', '~> 0.3'
-  spec.add_dependency 'activesupport', '>= 3.2'
+  spec.add_dependency 'activesupport', '>= 4.1.11'
 end

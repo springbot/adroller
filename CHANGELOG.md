@@ -2,9 +2,13 @@
 Misc.
 * Removed some redundant gem versions
 * Upgraded httparty to ~> 0.15
+* Upgraded factory_girl to ~> 4.8
+* Upgraded rubocop to ~> 0.49
+* Upgraded activesupport to >= 4.1.11
 
 Breaking Changes
 * require Ruby >= 2.0.0 as per httparty 0.15.0
+* require >= 4.1.11 activesupport because of security patch
 
 2.0.0
 ------
