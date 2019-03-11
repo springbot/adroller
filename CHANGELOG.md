@@ -1,7 +1,7 @@
 3.8.0
 Misc.
 * Removed some redundant gem versions
-* Upgraded httparty to ~> 0.15
+* Upgraded httparty to ~> 0.15.0
 * Upgraded factory_girl to ~> 4.8
 * Upgraded rubocop to ~> 0.49
 * Upgraded activesupport to >= 4.1.11
