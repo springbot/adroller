@@ -1,3 +1,11 @@
+3.8.0
+Misc.
+* Removed some redundant gem versions
+* Upgraded httparty to ~> 0.15
+
+Breaking Changes
+* require Ruby >= 2.0.0 a per httparty 0.15.0
+
 2.0.0
 ------
 New Features
