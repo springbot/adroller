@@ -4,7 +4,7 @@ Misc.
 * Upgraded httparty to ~> 0.15
 
 Breaking Changes
-* require Ruby >= 2.0.0 a per httparty 0.15.0
+* require Ruby >= 2.0.0 as per httparty 0.15.0
 
 2.0.0
 ------
