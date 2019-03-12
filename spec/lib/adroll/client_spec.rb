@@ -91,12 +91,12 @@ describe AdRoll::Client do
             else
               client.send(service_method).send(method, *ar)
             end
-            if service_method == 'segment_deliveries'
-              expect(WebMock).to have_requested(:any,
-                                                %r{.*\/segment-deliveries})
-            else
-              expect(WebMock).to have_requested(:any, %r{.*\/#{service_method}})
+
+            service_name = service_method.tr('_', '-')
+            if service_method == 'granular_attributions'
+              service_name = 'combined-granular-attributions'
             end
+            expect(WebMock).to have_requested(:any, %r{.*\/#{service_name}})
           end
         end
       end
