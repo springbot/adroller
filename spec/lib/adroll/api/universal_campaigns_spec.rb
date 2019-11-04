@@ -70,6 +70,27 @@ describe AdRoll::Api::UniversalCampaigns do
         expect(WebMock).to have_requested(:put, request_uri)
           .with(query: query_params, body: form_params.to_json)
       end
+
+      context 'when there is nil value on kpi goal' do
+        let(:form_params) do
+          {
+            name: 'be happy2',
+            kpi_goal: nil
+          }
+        end
+
+        let(:query_params) do
+          {
+            eid: 'SOMEADGROUPEID'
+          }
+        end
+
+        it 'calls the API with correct params' do
+          subject.adgroup(form_params, query_params, :put)
+          expect(WebMock).to have_requested(:put, request_uri)
+            .with(query: query_params, body: form_params.to_json)
+        end
+      end
     end
   end
 

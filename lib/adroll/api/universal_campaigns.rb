@@ -59,10 +59,10 @@ module AdRoll
         'https://services.adroll.com/activate/api/v2'
       end
 
-      # end_date is allowed to be nil for adgroups, that is why this exception is here.
+      # end_date/KPI goal is allowed to be nil for adgroups, that is why this exception is here.
       def sanitize_params(params, whitelist_constant)
         params.reject do |key, value|
-          !whitelist_constant.include?(key) || (key == :end_date ? false : value.nil?)
+          !whitelist_constant.include?(key) || (%i[end_date kpi_goal].include?(key) ? false : value.nil?)
         end
       end
     end

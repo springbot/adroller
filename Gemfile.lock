@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adroller (3.8.0)
+    adroller (3.9.1)
       activesupport (>= 4.1.11)
       httmultiparty (~> 0.3)
       httparty (~> 0.15.0)
@@ -66,7 +66,7 @@ GEM
     mimemagic (0.3.3)
     minitest (5.11.3)
     multi_xml (0.6.0)
-    multipart-post (2.0.0)
+    multipart-post (2.1.1)
     nenv (0.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -137,7 +137,7 @@ PLATFORMS
 
 DEPENDENCIES
   adroller!
-  bundler (~> 1.7)
+  bundler (~> 2.0.2)
   codecov
   factory_girl (~> 4.8)
   guard
@@ -151,4 +151,4 @@ DEPENDENCIES
   webmock (~> 2.3.2)
 
 BUNDLED WITH
-   1.16.3
+   2.0.2
