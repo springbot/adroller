@@ -1,3 +1,5 @@
+require 'json'
+
 module AdRoll
   class Service
     attr_accessor :client
@@ -43,6 +45,10 @@ module AdRoll
       $stdout if (client && client.debug?) || AdRoll.debug?
     end
 
+    def demo_mode
+      Rails.env.demo? || Rails.env.development? # TODO: remove development
+    end
+
     # Pass in addtional_query_params if you need query parameters on url for 
     # HTTP requests that require you to pass in form body
     def call_api(request_method, endpoint, params, additional_query_params = nil)
@@ -57,7 +63,9 @@ module AdRoll
       # Include api_key with every call.
       request_uri << "?apikey=#{AdRoll.api_key}"
 
-      if request_method == :get
+      if demo_mode
+        return_demo_response(request_method, request_uri, params, additional_query_params)
+      elsif request_method == :get
         perform_get(request_method, request_uri, params)
       elsif request_uri.include?('/ad/create?')
         perform_multi_post(request_method, request_uri, params)
@@ -104,6 +112,108 @@ module AdRoll
                     basic_auth: basic_auth,
                     body: params,
                     debug_output: debug_output)
+    end
+
+    def return_demo_response(request_method, request_uri, params, additional_query_params)
+      puts "ADROLL: return_demo_response(request_method: #{request_method}, request_uri: #{request_uri}, params: #{params}, additional_query_params: #{additional_query_params})" # TODO: remove print statement
+
+      status, data, body_string = demo_response_default
+
+      case request_uri
+      when /https:\/\/services[.]adroll[.]com\/activate\/api\/v2\/adgroup.*/
+        status, data, body_string = demo_response_put_adgroup(request_method, request_uri, params, additional_query_params) if request_method == :put
+      when /https:\/\/services[.]adroll[.]com\/api\/v1\/advertisable\/get.*/
+        status, data, body_string = demo_response_get_advertisable(request_method, request_uri, params, additional_query_params) if request_method == :get
+      when /https:\/\/service[.]adroll[.]com\/api\/v1\/facebook\/fb_page_url.*/
+        status, data, body_string = demo_response_get_fb_page_url(request_method, request_uri, params, additional_query_params) if request_method == :get
+      end
+
+      demo_response = Net::HTTPOK.new("1.1", status, body_string)
+      demo_response.define_singleton_method(:body) { body_string }
+
+      HTTParty::Response.new(HTTParty::Request.new(request_method, request_uri), demo_response, -> { { "data" => data } })
+    end
+
+    def demo_response_default
+      status = 200
+      data = []
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":\"\"}"
+      [status, data, body_string]
+    end
+
+    def demo_response_put_adgroup(request_method, request_uri, params, additional_query_params)
+      status = 200
+      datum = {
+        "ad_type" => "string",
+        "ads" => [
+        ],
+        "campaign_eid" => additional_query_params[:eid],
+        "eid": "abc",
+        "end_date": params['end_date'],
+        "name": params['name'],
+        "objective": "convert",
+        "start_date": params['start_date'],
+        "status": params['status'],
+      }
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{JSON.dump(datum)}}"
+      [status, [datum], body_string]
+    end
+
+    def demo_response_get_advertisable(request_method, request_uri, params, additional_query_params)
+      status = 200
+      datum = {
+        "approval_state" => "",
+        "attached_users" => [],
+        "blacklisted_sites" => [],
+        "business_unit" => "",
+        "click_through_conversion_window" => 0,
+        "cm_networks" => "",
+        "company_phone" => "",
+        "created_date" => "",
+        "eid" => "",
+        "enable_customer_multi_dur_segs" => true,
+        "has_approved_consent_solution" => true,
+        "has_privacy_policy" => true,
+        "iab1_category_id" => 0,
+        "iab1_category_name" => 0,
+        "iab2_category_id" => 0,
+        "iab2_category_name" => 0,
+        "iab_content_id" => 0,
+        "is_active" => true,
+        "is_coop_approved" => true,
+        "is_publisher" => true,
+        "liquidads" => "",
+        "name" => "",
+        "ops" => "",
+        "optimizer" => "",
+        "organization" => "",
+        "product_name" => "",
+        "saleser" => "",
+        "status" => "",
+        "updated_date" => "",
+        "url" => "",
+        "view_through_conversion_window" => 0,
+        "zvelo_category_id" => 0,
+        "zvelo_category_name" => ""
+      }
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{JSON.dump(datum)},\"results\":#{JSON.dump(datum)}}"
+      [status, [datum], body_string]
+    end
+
+    def demo_response_get_fb_page_url(request_method, request_uri, params, additional_query_params)
+      status = 200
+      datum = {
+        "fb_page_id" => "123456789",
+        "fb_page_img" => "",
+        "fb_page_name" => "Fake Page",
+        "fb_page_url" => "https://www.facebook.com/FakePage-123456789",
+        "is_published" => false,
+        "no_profile_picture" => false,
+        "page_access" => true,
+        "page_admin_access" => true
+      }
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{JSON.dump(datum)}}"
+      [status, [datum], body_string]
     end
   end
 end
