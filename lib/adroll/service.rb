@@ -64,7 +64,7 @@ module AdRoll
       request_uri << "?apikey=#{AdRoll.api_key}"
 
       if demo_mode
-        return_demo_response(request_method, request_uri, params, additional_query_params)
+        make_demo_response(request_method, request_uri, params, additional_query_params)
       elsif request_method == :get
         perform_get(request_method, request_uri, params)
       elsif request_uri.include?('/ad/create?')
@@ -114,9 +114,7 @@ module AdRoll
                     debug_output: debug_output)
     end
 
-    def return_demo_response(request_method, request_uri, params, additional_query_params)
-      puts "ADROLL: return_demo_response(request_method: #{request_method}, request_uri: #{request_uri}, params: #{params}, additional_query_params: #{additional_query_params})" # TODO: remove print statement
-
+    def make_demo_response(request_method, request_uri, params, additional_query_params)
       status, data, body_string = demo_response_default
 
       case request_uri
@@ -196,7 +194,8 @@ module AdRoll
         "zvelo_category_id" => 0,
         "zvelo_category_name" => ""
       }
-      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{JSON.dump(datum)},\"results\":#{JSON.dump(datum)}}"
+      jsonned = JSON.dump(datum)
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{jsonned},\"results\":#{jsonned}}"
       [status, [datum], body_string]
     end
 
