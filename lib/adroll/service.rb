@@ -198,8 +198,14 @@ module AdRoll
         "zvelo_category_id" => 0,
         "zvelo_category_name" => ""
       }
+<<<<<<< HEAD
       body_string = "{\"message\":\"\",\"status\":#{status},\"results\":#{JSON.dump(data)}}"
       [status, [data], body_string]
+=======
+      jsonned = JSON.dump(datum)
+      body_string = "{\"message\":\"\",\"status\":#{status},\"data\":#{jsonned},\"results\":#{jsonned}}"
+      [status, [datum], body_string]
+>>>>>>> e114502549374333c4e197ba495a72723c91d7e9
     end
 
     def demo_response_fb_page_url(request_method, request_uri, params, additional_query_params)
