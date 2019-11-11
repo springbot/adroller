@@ -46,7 +46,7 @@ module AdRoll
     end
 
     def demo_mode
-      Rails.env.demo?
+      Rails.env.demo? || true # TODO: remove " || true"
     end
 
     # Pass in addtional_query_params if you need query parameters on url for 
