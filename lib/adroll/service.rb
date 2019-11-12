@@ -122,18 +122,18 @@ module AdRoll
         status, data, body_string = demo_response_activate_adgroup(request_method, request_uri, params, additional_query_params) if request_method == :put
       when /https:\/\/services[.]adroll[.]com\/api\/v1\/advertisable\/get.*/
         status, data, body_string = demo_response_advertisable(request_method, request_uri, params, additional_query_params) if request_method == :get
-      when /https:\/\/service[.]adroll[.]com\/api\/v1\/facebook\/fb_page_url.*/
+      when /https:\/\/services[.]adroll[.]com\/api\/v1\/facebook\/fb_page_url.*/
         status, data, body_string = demo_response_fb_page_url(request_method, request_uri, params, additional_query_params) if request_method == :get
-      when /https:\/\/service[.]adroll[.]com\/api\/api\/v1\/dynamic_template_capability_description\/get_all.*/
+      when /https:\/\/services[.]adroll[.]com\/api\/v1\/dynamic_template_capability_description\/get_all.*/
         status, data, body_string = demo_response_dynamic_template_capability(request_method, request_uri, params, additional_query_params) if request_method == :get
-      when /https:\/\/service[.]adroll[.]com\/api\/v1\/dynamic_template\/get_all_for_advertisable.*/
+      when /https:\/\/services[.]adroll[.]com\/api\/v1\/dynamic_template\/get_all_for_advertisable.*/
         status, data, body_string = demo_response_dynamic_template_get_all(request_method, request_uri, params, additional_query_params) if request_method == :get
       end
 
       demo_response = Net::HTTPOK.new("1.1", status, body_string)
       demo_response.define_singleton_method(:body) { body_string }
 
-      HTTParty::Response.new(HTTParty::Request.new(request_method, request_uri), demo_response, -> { { "data" => data } })
+      HTTParty::Response.new(HTTParty::Request.new(request_method, request_uri), demo_response, -> { { "data" => data, "results" => data } })
     end
 
     def demo_response_default
@@ -225,7 +225,7 @@ module AdRoll
           "is_enabled": true,
           "description": "Promo text",
           "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-          "type": null,
+          "type": nil,
           "id": 1,
           "name": "promoText"
         },
@@ -233,7 +233,7 @@ module AdRoll
           "is_enabled": true,
           "description": "Sale price",
           "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-          "type": null,
+          "type": nil,
           "id": 2,
           "name": "salePrice"
         },
@@ -241,7 +241,7 @@ module AdRoll
           "is_enabled": true,
           "description": "Yotpo Reviews",
           "eid": "JEX3S2DGJVFITGQT4DP4CT",
-          "type": null,
+          "type": nil,
           "id": 5,
           "name": "yotpoReviews"
         },
@@ -249,7 +249,7 @@ module AdRoll
           "is_enabled": true,
           "description": "Countdown End",
           "eid": "6FIHPHA5ABCI7EKUBAAFHP",
-          "type": null,
+          "type": nil,
           "id": 38,
           "name": "countdownEnd"
         }
@@ -262,7 +262,7 @@ module AdRoll
       status = 200
       results = [
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Product Gladiator",
@@ -272,7 +272,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -284,12 +284,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -302,7 +302,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -310,7 +310,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -322,7 +322,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Enhancer",
@@ -332,7 +332,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -340,7 +340,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -352,12 +352,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -370,7 +370,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -378,7 +378,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -390,7 +390,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Classic carousel",
@@ -400,7 +400,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -412,7 +412,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Duotone carousel",
@@ -422,7 +422,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -434,12 +434,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -452,7 +452,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -460,7 +460,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -472,12 +472,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -490,7 +490,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -502,7 +502,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Promo Messaging",
@@ -512,7 +512,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -520,7 +520,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -532,7 +532,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Classic spotlight",
@@ -542,7 +542,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -554,7 +554,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Countdown Timer",
@@ -564,7 +564,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -572,7 +572,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             },
@@ -580,7 +580,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Countdown End",
               "eid": "6FIHPHA5ABCI7EKUBAAFHP",
-              "type": null,
+              "type": nil,
               "id": 38,
               "name": "countdownEnd"
             }
@@ -592,7 +592,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "*NEW* - Cyber Monday Border",
@@ -602,7 +602,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -610,7 +610,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -622,7 +622,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "*NEW* - Black Friday Border",
@@ -632,7 +632,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -640,7 +640,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -652,12 +652,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -670,7 +670,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -678,7 +678,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -690,12 +690,12 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [
             {
-              "url": null,
-              "description": null,
+              "url": nil,
+              "description": nil,
               "id": 491077,
               "name": "Albert's Apparel",
               "eid": "DHLZVDM7XZHZDLKSJC5OLD"
@@ -708,7 +708,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -716,7 +716,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -728,7 +728,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "Holiday Sparkle",
@@ -738,7 +738,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Saleprice",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
@@ -750,7 +750,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "*NEW* - Deluxe Timer",
@@ -760,7 +760,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Promo text",
               "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-              "type": null,
+              "type": nil,
               "id": 1,
               "name": "promoText"
             },
@@ -768,7 +768,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             },
@@ -776,7 +776,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Countdown End",
               "eid": "6FIHPHA5ABCI7EKUBAAFHP",
-              "type": null,
+              "type": nil,
               "id": 38,
               "name": "countdownEnd"
             }
@@ -788,7 +788,7 @@ module AdRoll
           "is_published": true
         },
         {
-          "category": null,
+          "category": nil,
           "is_visible": true,
           "allowed_advertisables": [],
           "name": "*NEW* - Retro Snow",
@@ -798,7 +798,7 @@ module AdRoll
               "is_enabled": true,
               "description": "Sale price",
               "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-              "type": null,
+              "type": nil,
               "id": 2,
               "name": "salePrice"
             }
