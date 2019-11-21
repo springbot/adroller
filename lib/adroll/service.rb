@@ -1,4 +1,3 @@
-require 'json'
 require 'adroll/demo_responses'
 
 module AdRoll
@@ -49,7 +48,7 @@ module AdRoll
     end
 
     def demo_mode
-      ENV['RAILS_ENV'] == 'demo' || true # TODO: remove " || true"
+      ENV['RAILS_ENV'] == 'demo'
     end
 
     # Pass in addtional_query_params if you need query parameters on url for 

@@ -29,7 +29,14 @@ describe AdRoll::Api::Service do
     context 'when environment is demo' do
       let(:request_uri) do
         'https://services.adroll.com/api/v1/ad/create'
+      end
+
+      before(:each) do
         ENV["RAILS_ENV"] = "demo"
+      end
+
+      after(:each) do
+        ENV.delete("RAILS_ENV")
       end
 
       it 'uses the demo pathway' do

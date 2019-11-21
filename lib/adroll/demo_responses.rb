@@ -1,3 +1,5 @@
+require 'json'
+
 module DemoResponses
     def make_demo_response(request_method, request_uri, params, additional_query_params)
         status, data, body_string = demo_response_default
