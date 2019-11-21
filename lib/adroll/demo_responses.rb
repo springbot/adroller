@@ -23,6 +23,8 @@ module DemoResponses
         HTTParty::Response.new(HTTParty::Request.new(request_method, request_uri), demo_response, -> { { "data" => data, "results" => data } })
     end
 
+    private
+
     def demo_response_default
         status = 200
         data = []
