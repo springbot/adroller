@@ -49,7 +49,7 @@ describe DemoResponses do
         it 'returns the expected response' do
           response = @dummy_class.make_demo_response(:get, request_uri, {}, {})
 
-          expect(response.code).to eq(200)          
+          expect(response.code).to eq(200)
           expect(response.body).to eq('{"message":"","status":200,"results":{"approval_state":"","attached_users":[],"blacklisted_sites":[],"business_unit":"","click_through_conversion_window":0,"cm_networks":"","company_phone":"","created_date":"","eid":"","enable_customer_multi_dur_segs":true,"has_approved_consent_solution":true,"has_privacy_policy":true,"iab1_category_id":0,"iab1_category_name":0,"iab2_category_id":0,"iab2_category_name":0,"iab_content_id":0,"is_active":true,"is_coop_approved":true,"is_publisher":true,"liquidads":"","name":"","ops":"","optimizer":"","organization":"","product_name":"","saleser":"","status":"","updated_date":"","url":"","view_through_conversion_window":0,"zvelo_category_id":0,"zvelo_category_name":""}}')
 
           expected_data = [{"approval_state"=>"", "attached_users"=>[], "blacklisted_sites"=>[], "business_unit"=>"", "click_through_conversion_window"=>0, "cm_networks"=>"", "company_phone"=>"", "created_date"=>"", "eid"=>"", "enable_customer_multi_dur_segs"=>true, "has_approved_consent_solution"=>true, "has_privacy_policy"=>true, "iab1_category_id"=>0, "iab1_category_name"=>0, "iab2_category_id"=>0, "iab2_category_name"=>0, "iab_content_id"=>0, "is_active"=>true, "is_coop_approved"=>true, "is_publisher"=>true, "liquidads"=>"", "name"=>"", "ops"=>"", "optimizer"=>"", "organization"=>"", "product_name"=>"", "saleser"=>"", "status"=>"", "updated_date"=>"", "url"=>"", "view_through_conversion_window"=>0, "zvelo_category_id"=>0, "zvelo_category_name"=>""}]
@@ -108,7 +108,7 @@ describe DemoResponses do
       context 'when method is get' do
         it 'returns the expected response' do
           response = @dummy_class.make_demo_response(:get, request_uri, {}, {})
-          
+
           expect(response.code).to eq(200)
           expect(response.body).to eq('{"message":"","status":200,"results":[{"is_enabled":true,"description":"Promo text","eid":"CHU4RLZSVJCVNG6ZELX2RM","type":null,"id":1,"name":"promoText"},{"is_enabled":true,"description":"Sale price","eid":"RJTMLC5L4ZDVFJSGV3EMOJ","type":null,"id":2,"name":"salePrice"},{"is_enabled":true,"description":"Yotpo Reviews","eid":"JEX3S2DGJVFITGQT4DP4CT","type":null,"id":5,"name":"yotpoReviews"},{"is_enabled":true,"description":"Countdown End","eid":"6FIHPHA5ABCI7EKUBAAFHP","type":null,"id":38,"name":"countdownEnd"}]}')
 
