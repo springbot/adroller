@@ -47,6 +47,10 @@ module AdRoll
     'https://services.adroll.com/uhura/v1'
   end
 
+  def self.prospecting_base_url
+    'https://services.adroll.com/prospecting/api/v2'
+  end
+
   def self.user_name
     @user_name || ENV['ADROLL_USERNAME']
   end
