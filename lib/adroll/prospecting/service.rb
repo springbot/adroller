@@ -10,7 +10,6 @@ module AdRoll
       private
 
       def perform_post(request_method, request_uri, params)
-        binding.pry
         HTTParty.send(request_method,
                       request_uri,
                       headers: { 'Content-Type' => 'application/json' },

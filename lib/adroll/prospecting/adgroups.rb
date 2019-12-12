@@ -6,51 +6,48 @@ module AdRoll
                           :is_active, :name, :user_status, :size, :source_segment_eid, :end_date,
                           :start_date].freeze
 
-      def get(params)
-        call_api(:get, path_param(params), {})
+      def get(adgroup_eid, params)
+        call_api(:get, adgroup_eid, {})
       end
 
-      def edit(params)
-        call_api(:post, path_param(params), sanitize_params(params))
+      def edit(adgroup_eid, params)
+        call_api(:post, adgroup_eid, sanitize_params(params))
       end
 
-      def get_audience(params)
-        path = File.join(path_param(params), "audience")
+      def get_audience(adgroup_eid, params)
+        path = File.join(adgroup_eid, "audience")
         call_api(:get, path, {})
       end
 
-      def edit_audience(params)
-        path = File.join(path_param(params), "audience")
+      def edit_audience(adgroup_eid, params)
+        path = File.join(adgroup_eid, "audience")
         call_api(:post, path, sanitize_params(params))
       end
 
-      def get_flights(params)
-        path = File.join(path_param(params), "flights")
+      def get_flights(adgroup_eid, params)
+        path = File.join(adgroup_eid, "flights")
         call_api(:get, path, {})
       end
 
-      def edit_flights(params)
-        path = File.join(path_param(params), "flights")
+      def edit_flights(adgroup_eid, params)
+        path = File.join(adgroup_eid, "flights")
         call_api(:post, path, sanitize_params(params))
       end
 
-      def get_geo_targets(params)
-        path = File.join(path_param(params), "geo-targets")
+      def get_geo_targets(adgroup_eid, params)
+        path = File.join(adgroup_eid, "geo-targets")
         call_api(:get, path, {})
       end
 
-      def edit_geo_targets(params)
-        path = File.join(path_param(params), "geo-targets")
+      def edit_geo_targets(adgroup_eid, params)
+        path = File.join(adgroup_eid, "geo-targets")
         call_api(:post, path, sanitize_params(params))
       end
 
       private
 
-      def path_param(params)
-        params[:adgroup].to_s
-      end
-
       def sanitize_params(params)
+        return params if params.kind_of?(Array)
         params.reject do |key, value|
           !WHITELIST_PARAMS.include?(key) || value.nil?
         end

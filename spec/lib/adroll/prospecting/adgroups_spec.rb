@@ -3,6 +3,7 @@ require 'spec_helper'
 describe AdRoll::Prospecting::Adgroups do
   let!(:basic_auth) { "#{AdRoll.user_name}:#{AdRoll.password}" }
   let!(:base_uri) { 'https://services.adroll.com/prospecting/api/v2/adgroups' }
+  let!(:adgroup_eid) { 'SAMPLEADGROUPEID' }
 
   subject { described_class }
 
@@ -13,15 +14,14 @@ describe AdRoll::Prospecting::Adgroups do
   describe '::get' do
     let(:params) do
       {
-        adgroup: 'SAMPLEEID',
-        dirty_param: 'abcd',
+        dirty_param: 'abcd'
       }
     end
 
-    let(:request_uri) { "#{base_uri}/#{params[:adgroup].to_s}" }
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}" }
 
     it 'calls the api with the correct params' do
-      subject.get(params)
+      subject.get(adgroup_eid, params)
       expect(WebMock).to have_requested(:get, request_uri).with(query: {})
     end
   end
@@ -29,7 +29,6 @@ describe AdRoll::Prospecting::Adgroups do
   describe '::edit' do
     let(:params) do
       {
-        adgroup: 'SAMPLEEID',
         ads: [{
           ad_eid: 'SAMPLEADEID',
           admin_status: 'live',
@@ -47,10 +46,115 @@ describe AdRoll::Prospecting::Adgroups do
       subject.send(:sanitize_params, params)
     end
 
-    let(:request_uri) { "#{base_uri}/#{params[:adgroup].to_s}" }
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}" }
 
-    fit 'calls the api with the correct params' do
-      subject.edit(params)
+    it 'calls the api with the correct params' do
+      subject.edit(adgroup_eid, params)
+      expect(WebMock).to have_requested(:post, request_uri).with(body: expected_params.to_json)
+    end
+  end
+
+  describe '::get_audience' do
+    let(:params) do
+      {
+        dirty_param: 'abcd'
+      }
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/audience" }
+
+    it 'calls the api with the correct params' do
+      subject.get_audience(adgroup_eid, params)
+      expect(WebMock).to have_requested(:get, request_uri).with(query: {})
+    end
+  end
+
+  describe '::edit_audience' do
+    let(:params) do
+      {
+        event_source: 'fortyniner-ui',
+        dirty_param: 'abcd'
+      }
+    end
+
+    let(:expected_params) do
+      subject.send(:sanitize_params, params)
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/audience" }
+
+    it 'calls the api with the correct params' do
+      subject.edit_audience(adgroup_eid, params)
+      expect(WebMock).to have_requested(:post, request_uri).with(body: expected_params.to_json)
+    end
+  end
+
+  describe '::get_flights' do
+    let(:params) do
+      {
+        dirty_param: 'abcd'
+      }
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/flights" }
+
+    it 'calls the api with the correct params' do
+      subject.get_flights(adgroup_eid, params)
+      expect(WebMock).to have_requested(:get, request_uri).with(query: {})
+    end
+  end
+
+  describe '::edit_flights' do
+    let(:params) do
+      {
+        event_source: 'fortyniner-ui',
+        dirty_param: 'abcd'
+      }
+    end
+
+    let(:expected_params) do
+      subject.send(:sanitize_params, params)
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/flights" }
+
+    it 'calls the api with the correct params' do
+      subject.edit_flights(adgroup_eid, params)
+      expect(WebMock).to have_requested(:post, request_uri).with(body: expected_params.to_json)
+    end
+  end
+
+  describe '::get_geo_targets' do
+    let(:params) do
+      {
+        dirty_param: 'abcd'
+      }
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/geo-targets" }
+
+    it 'calls the api with the correct params' do
+      subject.get_geo_targets(adgroup_eid, params)
+      expect(WebMock).to have_requested(:get, request_uri).with(query: {})
+    end
+  end
+
+  fdescribe '::edit_geo_targets' do
+    let(:params) do
+      [{
+        eid: 'GEOTARGETEIDSAMPLE',
+        operation: 'someoperation'
+      }]
+    end
+
+    let(:expected_params) do
+      subject.send(:sanitize_params, params)
+    end
+
+    let(:request_uri) { "#{base_uri}/#{adgroup_eid}/geo-targets" }
+
+    it 'calls the api with the correct params' do
+      subject.edit_geo_targets(adgroup_eid, params)
       expect(WebMock).to have_requested(:post, request_uri).with(body: expected_params.to_json)
     end
   end
