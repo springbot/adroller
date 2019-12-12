@@ -36,6 +36,9 @@ require 'adroll/uhura/segment_deliveries'
 require 'adroll/uhura/userlists'
 require 'adroll/uhura/granular_attributions'
 
+require 'adroll/prospecting/service'
+require 'adroll/prospecting/adgroups'
+
 require 'adroll/httparty_wrapper'
 
 module AdRoll
