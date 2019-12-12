@@ -38,6 +38,7 @@ require 'adroll/uhura/granular_attributions'
 
 require 'adroll/prospecting/service'
 require 'adroll/prospecting/adgroups'
+require 'adroll/prospecting/advertisables'
 
 require 'adroll/httparty_wrapper'
 
