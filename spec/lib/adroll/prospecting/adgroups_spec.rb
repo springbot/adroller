@@ -12,16 +12,10 @@ describe AdRoll::Prospecting::Adgroups do
   end
 
   describe '::get' do
-    let(:params) do
-      {
-        dirty_param: 'abcd'
-      }
-    end
-
     let(:request_uri) { "#{base_uri}/#{adgroup_eid}" }
 
     it 'calls the api with the correct params' do
-      subject.get(adgroup_eid, params)
+      subject.get(adgroup_eid)
       expect(WebMock).to have_requested(:get, request_uri).with(query: {})
     end
   end
@@ -55,16 +49,10 @@ describe AdRoll::Prospecting::Adgroups do
   end
 
   describe '::get_audience' do
-    let(:params) do
-      {
-        dirty_param: 'abcd'
-      }
-    end
-
     let(:request_uri) { "#{base_uri}/#{adgroup_eid}/audience" }
 
     it 'calls the api with the correct params' do
-      subject.get_audience(adgroup_eid, params)
+      subject.get_audience(adgroup_eid)
       expect(WebMock).to have_requested(:get, request_uri).with(query: {})
     end
   end
@@ -90,16 +78,10 @@ describe AdRoll::Prospecting::Adgroups do
   end
 
   describe '::get_flights' do
-    let(:params) do
-      {
-        dirty_param: 'abcd'
-      }
-    end
-
     let(:request_uri) { "#{base_uri}/#{adgroup_eid}/flights" }
 
     it 'calls the api with the correct params' do
-      subject.get_flights(adgroup_eid, params)
+      subject.get_flights(adgroup_eid)
       expect(WebMock).to have_requested(:get, request_uri).with(query: {})
     end
   end
@@ -125,21 +107,15 @@ describe AdRoll::Prospecting::Adgroups do
   end
 
   describe '::get_geo_targets' do
-    let(:params) do
-      {
-        dirty_param: 'abcd'
-      }
-    end
-
     let(:request_uri) { "#{base_uri}/#{adgroup_eid}/geo-targets" }
 
     it 'calls the api with the correct params' do
-      subject.get_geo_targets(adgroup_eid, params)
+      subject.get_geo_targets(adgroup_eid)
       expect(WebMock).to have_requested(:get, request_uri).with(query: {})
     end
   end
 
-  fdescribe '::edit_geo_targets' do
+  describe '::edit_geo_targets' do
     let(:params) do
       [{
         eid: 'GEOTARGETEIDSAMPLE',
