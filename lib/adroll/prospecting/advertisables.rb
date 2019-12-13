@@ -40,7 +40,6 @@ module AdRoll
       private
 
       def sanitize_params(params)
-        # return params if params.kind_of?(Array)
         params.reject do |key, value|
           !WHITELIST_PARAMS.include?(key) || value.nil?
         end
