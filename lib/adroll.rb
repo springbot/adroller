@@ -41,6 +41,7 @@ require 'adroll/prospecting/adgroups'
 require 'adroll/prospecting/advertisables'
 require 'adroll/prospecting/audiences'
 require 'adroll/prospecting/campaigns'
+require 'adroll/prospecting/flights'
 
 require 'adroll/httparty_wrapper'
 
