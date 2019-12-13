@@ -18,6 +18,8 @@ module AdRoll
         "AdRoll::Api::#{camelize(method_name)}".constantize.new(client: self)
       when 'uhura'
         "AdRoll::Uhura::#{camelize(method_name)}".constantize.new(client: self)
+      when 'prospecting'
+        "AdRoll::Prospecting::#{camelize(method_name)}".constantize.new(client: self)
       end
     end
 

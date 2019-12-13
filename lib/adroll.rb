@@ -27,6 +27,7 @@ require 'adroll/api/universal_campaigns'
 require 'adroll/api/user'
 require 'adroll/api/product'
 require 'adroll/api/product_feeds'
+require 'adroll/api/graphql'
 
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
@@ -35,6 +36,16 @@ require 'adroll/uhura/deliveries/domain'
 require 'adroll/uhura/segment_deliveries'
 require 'adroll/uhura/userlists'
 require 'adroll/uhura/granular_attributions'
+
+require 'adroll/prospecting/service'
+require 'adroll/prospecting/adgroups'
+require 'adroll/prospecting/advertisables'
+require 'adroll/prospecting/audiences'
+require 'adroll/prospecting/campaigns'
+require 'adroll/prospecting/flights'
+require 'adroll/prospecting/metrics'
+require 'adroll/prospecting/report'
+require 'adroll/prospecting/reports'
 
 require 'adroll/httparty_wrapper'
 
@@ -45,6 +56,10 @@ module AdRoll
 
   def self.uhura_base_url
     'https://services.adroll.com/uhura/v1'
+  end
+
+  def self.prospecting_base_url
+    'https://services.adroll.com/prospecting/api/v2'
   end
 
   def self.user_name
