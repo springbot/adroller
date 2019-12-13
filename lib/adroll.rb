@@ -27,6 +27,7 @@ require 'adroll/api/universal_campaigns'
 require 'adroll/api/user'
 require 'adroll/api/product'
 require 'adroll/api/product_feeds'
+require 'adroll/api/graphql'
 
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
