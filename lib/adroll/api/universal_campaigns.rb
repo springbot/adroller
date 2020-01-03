@@ -15,8 +15,8 @@ module AdRoll
 
       CAMPAIGN_QUERY_PARAMS = [:advertisable_eid, :eid].freeze
 
-      CAMPAIGN_JSON_PARAMS = [:name, :kpi_goal, :budget, :currency,
-                              :adgroups, :kpi_metric, :status].freeze
+      CAMPAIGN_JSON_PARAMS = [:name, :kpi_goal, :budget, :currency, :objective
+                              :adgroups, :kpi_metric, :status, :budget_settings].freeze
 
       def adgroup(params, additional_query_params, method = :get)
         if method == :get
