@@ -46,7 +46,10 @@ describe AdRoll::Api::Advertisable do
         url: 'https://url.com',
         product_name: 'product_name',
         view_through_conversion_window: '30',
-        country_code: 'US'
+        country_code: 'US',
+        has_approved_safari_add_on: 'true',
+        safari_add_on_theme: 'light',
+        is_coop_approved: 'true'
       }
     end
 
