@@ -8,7 +8,8 @@ module AdRoll
                           :organization, :path_name, :product_name,
                           :set_as_default, :statuses, :types, :url,
                           :view_through_conversion_window, :width, :country_code,
-                          :is_twitter_syncing, :twitter_handle].freeze
+                          :is_twitter_syncing, :twitter_handle, :has_approved_safari_add_on,
+                          :safari_add_on_theme, :is_coop_approved].freeze
 
       def create(params)
         call_api(:post, __method__, sanitize_params(params))

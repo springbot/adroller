@@ -28,6 +28,7 @@ require 'adroll/api/user'
 require 'adroll/api/product'
 require 'adroll/api/product_feeds'
 require 'adroll/api/graphql'
+require 'adroll/api/xdevice_opt_in'
 
 require 'adroll/uhura/service'
 require 'adroll/uhura/attributions'
