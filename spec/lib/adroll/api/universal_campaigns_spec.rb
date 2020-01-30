@@ -34,6 +34,7 @@ describe AdRoll::Api::UniversalCampaigns do
           ad_type: 'dynamic',
           name: 'some adgroup',
           kpi_metric: 'CPM',
+          objective: 'attract_lookalike'
         }
       end
 
