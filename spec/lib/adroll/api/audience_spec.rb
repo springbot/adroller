@@ -25,4 +25,34 @@ describe AdRoll::Api::Audience do
         .with(query: params)
     end
   end
+
+  describe '::segments' do
+    let(:request_uri) { "#{base_uri}/segments" }
+    let(:params) do
+      {
+        advertiser_id: 'abc123',
+        name: 'test segment',
+        source_segment_eid: 'segmenteid123'
+      }
+    end
+
+    context 'when creating' do
+      it 'calls the api with the correct params' do
+        subject.segments(params)
+        expect(WebMock).to have_requested(:post, request_uri)
+          .with(body: params)
+      end
+    end
+
+    context 'when updating' do
+      let(:segment_eid) { 'somesegmenteid' }
+      let(:request_uri) { "#{base_uri}/segments/#{segment_eid}" }
+
+      it 'calls the api with the correct params' do
+        subject.segments(params, segment_eid)
+        expect(WebMock).to have_requested(:post, request_uri)
+          .with(body: params)
+      end
+    end
+  end
 end
