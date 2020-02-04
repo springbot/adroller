@@ -69,6 +69,8 @@ module AdRoll
         make_demo_response(request_method, request_uri, params, additional_query_params)
       elsif request_method == :get
         perform_get(request_method, request_uri, params)
+      elsif request_uri.include?('/audience/v1/segments')
+        perform_post_with_json_body(request_method, request_uri, params)
       elsif request_uri.include?('/ad/create?')
         perform_multi_post(request_method, request_uri, params)
       elsif additional_query_params.present?
@@ -86,6 +88,15 @@ module AdRoll
                                      basic_auth: basic_auth,
                                      query: params,
                                      debug_output: debug_output)
+    end
+
+    def perform_post_with_json_body(request_method, request_uri, params)
+      HTTParty.send(request_method,
+                    request_uri,
+                    headers: { 'Content-Type' => 'application/json' },
+                    basic_auth: basic_auth,
+                    body: params,
+                    debug_output: debug_output)
     end
 
     def perform_multi_post(request_method, request_uri, params)

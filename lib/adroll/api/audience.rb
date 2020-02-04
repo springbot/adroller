@@ -12,7 +12,7 @@ module AdRoll
 
       def segments(params, segment_id = nil)
         endpoint = segment_id.present? ? "#{__method__}/#{segment_id}" : __method__
-        call_api(:post, endpoint, sanitize_params(params))
+        call_api(:post, endpoint, sanitize_params(params).to_json)
       end
 
       private
