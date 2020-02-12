@@ -15,6 +15,8 @@ module DemoResponses
             status, data, body_string = demo_response_dynamic_template_capability(request_method, request_uri, params, additional_query_params) if request_method == :get
         when /https:\/\/services[.]adroll[.]com\/api\/v1\/dynamic_template\/get_all_for_advertisable.*/
             status, data, body_string = demo_response_dynamic_template_get_all(request_method, request_uri, params, additional_query_params) if request_method == :get
+        when /https:\/\/services[.]adroll[.]com\/api\/v1\/product\/recommendations_preview.*/
+            status, data, body_string = demo_response_product_recommendations_preview(request_method, request_uri, params, additional_query_params) if request_method == :get
         end
 
         demo_response = Net::HTTPOK.new("1.1", status, body_string)
@@ -111,36 +113,36 @@ module DemoResponses
         status = 200
         results = [
             {
-            "is_enabled": true,
-            "description": "Promo text",
-            "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-            "type": nil,
-            "id": 1,
-            "name": "promoText"
+                "is_enabled": true,
+                "description": "Promo text",
+                "eid": "CHU4RLZSVJCVNG6ZELX2RM",
+                "type": nil,
+                "id": 1,
+                "name": "promoText"
             },
             {
-            "is_enabled": true,
-            "description": "Sale price",
-            "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-            "type": nil,
-            "id": 2,
-            "name": "salePrice"
+                "is_enabled": true,
+                "description": "Sale price",
+                "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
+                "type": nil,
+                "id": 2,
+                "name": "salePrice"
             },
             {
-            "is_enabled": true,
-            "description": "Yotpo Reviews",
-            "eid": "JEX3S2DGJVFITGQT4DP4CT",
-            "type": nil,
-            "id": 5,
-            "name": "yotpoReviews"
+                "is_enabled": true,
+                "description": "Yotpo Reviews",
+                "eid": "JEX3S2DGJVFITGQT4DP4CT",
+                "type": nil,
+                "id": 5,
+                "name": "yotpoReviews"
             },
             {
-            "is_enabled": true,
-            "description": "Countdown End",
-            "eid": "6FIHPHA5ABCI7EKUBAAFHP",
-            "type": nil,
-            "id": 38,
-            "name": "countdownEnd"
+                "is_enabled": true,
+                "description": "Countdown End",
+                "eid": "6FIHPHA5ABCI7EKUBAAFHP",
+                "type": nil,
+                "id": 38,
+                "name": "countdownEnd"
             }
         ]
         body_string = "{\"message\":\"\",\"status\":#{status},\"results\":#{JSON.dump(results)}}"
@@ -243,6 +245,50 @@ module DemoResponses
             {
                 "category": nil,
                 "is_visible": true,
+                "allowed_advertisables": [],
+                "name": "Classic carousel",
+                "in_testing": false,
+                "capabilities": [
+                    {
+                        "is_enabled": true,
+                        "description": "Sale price",
+                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
+                        "type": nil,
+                        "id": 2,
+                        "name": "salePrice"
+                    }
+                ],
+                "order": 6,
+                "eid": "UEM7NKGSWNBCNLAAMPFRHK",
+                "id": 1,
+                "is_private": false,
+                "is_published": true
+            },
+            {
+                "category": nil,
+                "is_visible": true,
+                "allowed_advertisables": [],
+                "name": "Duotone carousel",
+                "in_testing": false,
+                "capabilities": [
+                    {
+                        "is_enabled": true,
+                        "description": "Sale price",
+                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
+                        "type": nil,
+                        "id": 2,
+                        "name": "salePrice"
+                    }
+                ],
+                "order": 7,
+                "eid": "VF63IQXOENDI5GGA6B5XRS",
+                "id": 2,
+                "is_private": false,
+                "is_published": true
+            },
+            {
+                "category": nil,
+                "is_visible": true,
                 "allowed_advertisables": [
                     {
                         "url": nil,
@@ -272,53 +318,9 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 7,
+                "order": 8,
                 "eid": "DLSTZABMXZBMXHKVSNAUH5",
                 "id": 197,
-                "is_private": false,
-                "is_published": true
-            },
-            {
-                "category": nil,
-                "is_visible": true,
-                "allowed_advertisables": [],
-                "name": "Classic carousel",
-                "in_testing": false,
-                "capabilities": [
-                    {
-                        "is_enabled": true,
-                        "description": "Sale price",
-                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-                        "type": nil,
-                        "id": 2,
-                        "name": "salePrice"
-                    }
-                ],
-                "order": 8,
-                "eid": "UEM7NKGSWNBCNLAAMPFRHK",
-                "id": 1,
-                "is_private": false,
-                "is_published": true
-            },
-            {
-                "category": nil,
-                "is_visible": true,
-                "allowed_advertisables": [],
-                "name": "Duotone carousel",
-                "in_testing": false,
-                "capabilities": [
-                    {
-                        "is_enabled": true,
-                        "description": "Sale price",
-                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-                        "type": nil,
-                        "id": 2,
-                        "name": "salePrice"
-                    }
-                ],
-                "order": 9,
-                "eid": "VF63IQXOENDI5GGA6B5XRS",
-                "id": 2,
                 "is_private": false,
                 "is_published": true
             },
@@ -354,7 +356,7 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 11,
+                "order": 10,
                 "eid": "IKGDEIR62ZBYRDWH2EGC6U",
                 "id": 214,
                 "is_private": false,
@@ -384,7 +386,7 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 12,
+                "order": 11,
                 "eid": "A6YHMZAQ7NAQNJUHYSDNBC",
                 "id": 119,
                 "is_private": false,
@@ -414,7 +416,7 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 14,
+                "order": 13,
                 "eid": "F4AAKPQNBNCNHNH66LLXCE",
                 "id": 39,
                 "is_private": false,
@@ -436,7 +438,7 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 15,
+                "order": 14,
                 "eid": "W4HHTPMDTNDPLMZZBF6Z7C",
                 "id": 0,
                 "is_private": false,
@@ -474,7 +476,7 @@ module DemoResponses
                         "name": "countdownEnd"
                     }
                 ],
-                "order": 19,
+                "order": 18,
                 "eid": "R3CYR24CYZBT3KMBAZCNFC",
                 "id": 148,
                 "is_private": false,
@@ -504,7 +506,7 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 20,
+                "order": 19,
                 "eid": "65FI34Y5ENBJVLDYNNPOLM",
                 "id": 282,
                 "is_private": false,
@@ -534,107 +536,9 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 21,
+                "order": 20,
                 "eid": "JF57EK3JVJGVLCN3KSLMFC",
                 "id": 280,
-                "is_private": false,
-                "is_published": true
-            },
-            {
-                "category": nil,
-                "is_visible": true,
-                "allowed_advertisables": [
-                    {
-                        "url": nil,
-                        "description": nil,
-                        "id": 491077,
-                        "name": "Albert's Apparel",
-                        "eid": "DHLZVDM7XZHZDLKSJC5OLD"
-                    }
-                ],
-                "name": "Holiday Bow 2.0",
-                "in_testing": false,
-                "capabilities": [
-                    {
-                        "is_enabled": true,
-                        "description": "Promo text",
-                        "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-                        "type": nil,
-                        "id": 1,
-                        "name": "promoText"
-                    },
-                    {
-                        "is_enabled": true,
-                        "description": "Sale price",
-                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-                        "type": nil,
-                        "id": 2,
-                        "name": "salePrice"
-                    }
-                ],
-                "order": 22,
-                "eid": "UX2CZHS7DNAYLPE3LWGMS3",
-                "id": 201,
-                "is_private": false,
-                "is_published": true
-            },
-            {
-                "category": nil,
-                "is_visible": true,
-                "allowed_advertisables": [
-                    {
-                        "url": nil,
-                        "description": nil,
-                        "id": 491077,
-                        "name": "Albert's Apparel",
-                        "eid": "DHLZVDM7XZHZDLKSJC5OLD"
-                    }
-                ],
-                "name": "Christmas Tree",
-                "in_testing": false,
-                "capabilities": [
-                    {
-                        "is_enabled": true,
-                        "description": "Promo text",
-                        "eid": "CHU4RLZSVJCVNG6ZELX2RM",
-                        "type": nil,
-                        "id": 1,
-                        "name": "promoText"
-                    },
-                    {
-                        "is_enabled": true,
-                        "description": "Sale price",
-                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-                        "type": nil,
-                        "id": 2,
-                        "name": "salePrice"
-                    }
-                ],
-                "order": 23,
-                "eid": "ON65GKYB5ZH5BMEV2HRRVV",
-                "id": 199,
-                "is_private": false,
-                "is_published": true
-            },
-            {
-                "category": nil,
-                "is_visible": true,
-                "allowed_advertisables": [],
-                "name": "Holiday Sparkle",
-                "in_testing": false,
-                "capabilities": [
-                    {
-                        "is_enabled": true,
-                        "description": "Saleprice",
-                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
-                        "type": nil,
-                        "id": 2,
-                        "name": "salePrice"
-                    }
-                ],
-                "order": 24,
-                "eid": "S7SC62U2JVH53HLSTSALVW",
-                "id": 36,
                 "is_private": false,
                 "is_published": true
             },
@@ -670,7 +574,7 @@ module DemoResponses
                         "name": "countdownEnd"
                     }
                 ],
-                "order": 25,
+                "order": 21,
                 "eid": "FRHHAYZ5CNBNTMWMTNXA4R",
                 "id": 284,
                 "is_private": false,
@@ -692,13 +596,127 @@ module DemoResponses
                         "name": "salePrice"
                     }
                 ],
-                "order": 29,
+                "order": 22,
                 "eid": "KKMSKTI6AVFCTDOJFTFA62",
                 "id": 293,
                 "is_private": false,
                 "is_published": true
+            },
+            {
+                "category": nil,
+                "is_visible": true,
+                "allowed_advertisables": [],
+                "name": "Valentine Spotlight",
+                "in_testing": false,
+                "capabilities": [
+                    {
+                        "is_enabled": true,
+                        "description": "Sale price",
+                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
+                        "type": nil,
+                        "id": 2,
+                        "name": "salePrice"
+                    }
+                ],
+                "order": 25,
+                "eid": "5VLPABPQ3RE3NNJTFKKQL3",
+                "id": 45,
+                "is_private": false,
+                "is_published": true
+            },
+            {
+                "category": nil,
+                "is_visible": true,
+                "allowed_advertisables": [],
+                "name": "Valentine Carousel",
+                "in_testing": false,
+                "capabilities": [
+                    {
+                        "is_enabled": true,
+                        "description": "Sale price",
+                        "eid": "RJTMLC5L4ZDVFJSGV3EMOJ",
+                        "type": nil,
+                        "id": 2,
+                        "name": "salePrice"
+                    }
+                ],
+                "order": 26,
+                "eid": "NITCJQHGGNGDDB4KOATXAQ",
+                "id": 47,
+                "is_private": false,
+                "is_published": true
             }
         ]
+
+        body_string = "{\"message\":\"\",\"status\":#{status},\"results\":#{JSON.dump(results)}}"
+        [status, results, body_string]
+    end
+
+    def demo_response_product_recommendations_preview(request_method, request_uri, params, additional_query_params)
+        status = 200
+        results = [
+            {
+                "url": "http://www.adroll.com",
+                "description": "Most popular styles are back",
+                "title": "Classic watches",
+                "sale_price_normalized": "80",
+                "price_normalized": "100",
+                "price": "$100",
+                "sale_price": "$80",
+                "image": "https://s.adroll.com/liquidads/default_product_images/600x315_6.jpg",
+                "brand": "AdRoll",
+                "idhash": "1"
+            },
+            {
+                "url": "http://www.adroll.com",
+                "description": "The road is calling",
+                "title": "Vintage bicycles",
+                "sale_price_normalized": "200",
+                "price_normalized": "200",
+                "price": "$200",
+                "sale_price": "$200",
+                "image": "https://s.adroll.com/liquidads/default_product_images/600x315_5.jpg",
+                "brand": "AdRoll",
+                "idhash": "2"
+            },
+            {
+                "url": "http://www.adroll.com",
+                "description": "Satisfy that shutterbug",
+                "title": "Cameras on sale",
+                "sale_price_normalized": "80",
+                "price_normalized": "100",
+                "price": "$100",
+                "sale_price": "$80",
+                "image": "https://s.adroll.com/liquidads/default_product_images/600x315_1.jpg",
+                "brand": "AdRoll",
+                "idhash": "3"
+            },
+            {
+                "url": "http://www.adroll.com",
+                "description": "Beat the heat this summer",
+                "title": "Extra soft linen shirts",
+                "sale_price_normalized": "20",
+                "price_normalized": "30",
+                "price": "$30",
+                "sale_price": "$20",
+                "image": "https://s.adroll.com/liquidads/default_product_images/600x315_4.jpg",
+                "brand": "AdRoll",
+                "idhash": "4"
+            },
+            {
+                "url": "http://www.adroll.com",
+                "description": "Widest collection of colors",
+                "title": "Make it pop!",
+                "sale_price_normalized": "50",
+                "price_normalized": "20",
+                "price": "$20",
+                "sale_price": "$50",
+                "image": "https://s.adroll.com/liquidads/default_product_images/600x315_2.jpg",
+                "brand": "AdRoll",
+                "idhash": "5"
+            }
+        ]
+
         body_string = "{\"message\":\"\",\"status\":#{status},\"results\":#{JSON.dump(results)}}"
         [status, results, body_string]
     end
