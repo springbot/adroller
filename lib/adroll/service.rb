@@ -48,7 +48,7 @@ module AdRoll
     end
 
     def demo_mode
-      ENV['RAILS_ENV'] == 'demo' || true # TODO: remove
+      ENV['RAILS_ENV'] == 'demo' || ENV['ADROLLER_DEMO_MODE'] == 'true'
     end
 
     # Pass in addtional_query_params if you need query parameters on url for 
