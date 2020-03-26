@@ -1,5 +1,9 @@
+require 'adroll/demo_responses'
+
 module AdRoll
   class Service
+    include DemoResponses
+
     attr_accessor :client
 
     # Override Object's clone method and pass to method_missing
@@ -43,6 +47,10 @@ module AdRoll
       $stdout if (client && client.debug?) || AdRoll.debug?
     end
 
+    def demo_mode
+      ENV['RAILS_ENV'] == 'demo' || ENV['ADROLLER_DEMO_MODE'] == 'true'
+    end
+
     # Pass in addtional_query_params if you need query parameters on url for 
     # HTTP requests that require you to pass in form body
     def call_api(request_method, endpoint, params, additional_query_params = nil)
@@ -57,7 +65,9 @@ module AdRoll
       # Include api_key with every call.
       request_uri << "?apikey=#{AdRoll.api_key}"
 
-      if request_method == :get
+      if demo_mode
+        make_demo_response(request_method, request_uri, params, additional_query_params)
+      elsif request_method == :get
         perform_get(request_method, request_uri, params)
       elsif request_uri.include?('/audience/v1/segments')
         perform_post_with_json_body(request_method, request_uri, params)
