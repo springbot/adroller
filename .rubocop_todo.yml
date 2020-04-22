@@ -12,7 +12,10 @@ Style/Documentation:
 Style/AccessorMethodName:
   Enabled: false
 
-Style/MethodMissing:
+Style/MethodMissingSuper:
+  Enabled: false
+
+Style/MissingRespondToMissing:
   Enabled: false
 
 Metrics/LineLength:
@@ -22,4 +25,4 @@ Metrics/ParameterLists:
   Max: 6
 
 Metrics/BlockLength:
-  Max: 30
+  Max: 60
