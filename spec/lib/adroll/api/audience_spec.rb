@@ -55,4 +55,17 @@ describe AdRoll::Api::Audience do
       end
     end
   end
+
+  describe '::crosschannel_lal_segments' do
+    let(:request_uri) { "#{base_uri}/crosschannel_lal_segments/valid-segments" }
+    let(:params) do
+      { advertiser_id: 'abc123' }
+    end
+
+    it 'calls the api with the correct params' do
+      subject.crosschannel_lal_segments(params)
+      expect(WebMock).to have_requested(:get, request_uri)
+        .with(query: params)
+    end
+  end
 end
