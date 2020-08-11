@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adroller (4.2.4)
+    adroller (4.2.5)
       activesupport (>= 4.1.11)
       httmultiparty (~> 0.3)
       httparty (~> 0.15.0)
@@ -63,7 +63,7 @@ GEM
       ruby_dep (~> 1.2)
     lumberjack (1.0.13)
     method_source (0.9.2)
-    mimemagic (0.3.4)
+    mimemagic (0.3.5)
     minitest (5.11.3)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -137,7 +137,7 @@ PLATFORMS
 
 DEPENDENCIES
   adroller!
-  bundler (~> 2.0.2)
+  bundler (~> 2.1.4)
   codecov
   factory_girl (~> 4.8)
   guard
@@ -151,4 +151,4 @@ DEPENDENCIES
   webmock (~> 2.3.2)
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
