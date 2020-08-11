@@ -34,7 +34,9 @@ describe AdRoll::Api::UniversalCampaigns do
           ad_type: 'dynamic',
           name: 'some adgroup',
           kpi_metric: 'CPM',
-          objective: 'attract_lookalike'
+          objective: 'attract_lookalike',
+          fb_placements: %w[DesktopFeed MobileFeed RightColumn MobileExternal InstagramStream],
+          li_audience_network_enabled: false
         }
       end
 
@@ -142,7 +144,7 @@ describe AdRoll::Api::UniversalCampaigns do
     context 'on POST request' do
       let(:form_params) do
         {
-          adgroups: [{'ad_type' => 'hihi', 'name' => 'adgroup name'}],
+          adgroups: [{ 'ad_type' => 'hihi', 'name' => 'adgroup name' }],
           budget: 5.0,
           currency: 'paused',
           kpi_goal: 2.0,
