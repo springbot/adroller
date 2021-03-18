@@ -2,11 +2,12 @@ require 'json'
 
 module DemoResponses
     def make_demo_response(request_method, request_uri, params, additional_query_params)
-        status, data, body_string = demo_response_default
 
         case request_uri
         when /https:\/\/services[.]adroll[.]com\/activate\/api\/v2\/adgroup.*/
             status, data, body_string = demo_response_activate_adgroup(request_method, request_uri, params, additional_query_params) if request_method == :put
+        when /https:\/\/services[.]adroll[.]com\/activate\/api\/v2\/campaign.*/
+          status, data, body_string = demo_response_get_universal_campaigns if request_method == :get
         when /https:\/\/services[.]adroll[.]com\/api\/v1\/advertisable\/get.*/
             status, data, body_string = demo_response_advertisable(request_method, request_uri, params, additional_query_params) if request_method == :get
         when /https:\/\/services[.]adroll[.]com\/api\/v1\/facebook\/fb_page_url.*/
@@ -17,6 +18,8 @@ module DemoResponses
             status, data, body_string = demo_response_dynamic_template_get_all(request_method, request_uri, params, additional_query_params) if request_method == :get
         when /https:\/\/services[.]adroll[.]com\/api\/v1\/product\/recommendations_preview.*/
             status, data, body_string = demo_response_product_recommendations_preview(request_method, request_uri, params, additional_query_params) if request_method == :get
+        else
+          status, data, body_string = demo_response_default
         end
 
         demo_response = Net::HTTPOK.new("1.1", status, body_string)
@@ -31,6 +34,13 @@ module DemoResponses
         status = 200
         data = []
         body_string = "{\"message\":\"\",\"status\":#{status},\"data\":\"\"}"
+        [status, data, body_string]
+    end
+
+    def demo_response_get_universal_campaigns
+        status = 200
+        data = []
+        body_string = "{\"message\":\"\",\"status\":#{status},\"data\":[]}"
         [status, data, body_string]
     end
 
